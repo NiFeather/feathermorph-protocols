@@ -5,6 +5,7 @@ plugins {
 
 group = "xiamomc.morph"
 version = "0.10.0.01"
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
     mavenCentral()
