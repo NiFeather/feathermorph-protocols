@@ -3,6 +3,7 @@ package xiamomc.morph.network.commands.S2C.query;
 import org.jetbrains.annotations.Nullable;
 import xiamomc.morph.network.BasicServerHandler;
 import xiamomc.morph.network.commands.S2C.AbstractS2CCommand;
+import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class S2CQueryCommand extends AbstractS2CCommand<String>
     @Override
     public String getBaseName()
     {
-        return "query";
+        return S2CCommandNames.Query;
     }
 
     @Override

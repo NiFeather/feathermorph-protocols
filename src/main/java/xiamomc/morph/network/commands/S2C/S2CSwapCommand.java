@@ -6,7 +6,7 @@ public class S2CSwapCommand extends AbstractS2CCommand<String>
 {
     @Override
     public String getBaseName() {
-        return "swap";
+        return S2CCommandNames.SwapHands;
     }
 
     @Override

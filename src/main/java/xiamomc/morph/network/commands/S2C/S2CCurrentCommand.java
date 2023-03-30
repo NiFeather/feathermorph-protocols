@@ -17,7 +17,7 @@ public class S2CCurrentCommand extends AbstractS2CCommand<String>
     @Override
     public String getBaseName()
     {
-        return "current";
+        return S2CCommandNames.Current;
     }
     @Override
     public void onCommand(BasicServerHandler<?> handler)

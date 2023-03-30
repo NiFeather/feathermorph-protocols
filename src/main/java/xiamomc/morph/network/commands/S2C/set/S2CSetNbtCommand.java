@@ -1,11 +1,14 @@
 package xiamomc.morph.network.commands.S2C.set;
 
+import xiamomc.morph.network.commands.S2C.S2CCommandNames;
+
+@Deprecated
 public abstract class S2CSetNbtCommand<TCompound> extends AbstractS2CSetCommand<TCompound>
 {
     @Override
     public String getBaseName()
     {
-        return "nbt";
+        return S2CCommandNames.SetNbt;
     }
 }
 

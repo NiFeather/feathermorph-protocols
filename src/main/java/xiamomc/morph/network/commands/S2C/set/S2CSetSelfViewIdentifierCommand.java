@@ -1,10 +1,11 @@
 package xiamomc.morph.network.commands.S2C.set;
 
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
-public class S2CSetSelfViewCommand extends AbstractS2CSetCommand<String>
+public class S2CSetSelfViewIdentifierCommand extends AbstractS2CSetCommand<String>
 {
-    public S2CSetSelfViewCommand(String identifier)
+    public S2CSetSelfViewIdentifierCommand(String identifier)
     {
         super(identifier);
     }
@@ -12,13 +13,13 @@ public class S2CSetSelfViewCommand extends AbstractS2CSetCommand<String>
     @Override
     public String getBaseName()
     {
-        return "selfview";
+        return S2CCommandNames.SetSelfViewIdentifier;
     }
 
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {
-        handler.onSetSelfViewCommand(this);
+        handler.onSetSelfViewIdentifierCommand(this);
     }
 
     @Override

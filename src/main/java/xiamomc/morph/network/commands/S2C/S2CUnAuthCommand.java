@@ -7,7 +7,7 @@ public class S2CUnAuthCommand extends AbstractS2CCommand<String>
     @Override
     public String getBaseName()
     {
-        return "unauth";
+        return S2CCommandNames.UnAuth;
     }
 
     @Override

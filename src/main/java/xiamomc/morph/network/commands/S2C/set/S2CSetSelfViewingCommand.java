@@ -1,10 +1,11 @@
 package xiamomc.morph.network.commands.S2C.set;
 
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
-public class S2CSetToggleSelfCommand extends AbstractS2CSetCommand<Boolean>
+public class S2CSetSelfViewingCommand extends AbstractS2CSetCommand<Boolean>
 {
-    public S2CSetToggleSelfCommand(Boolean val)
+    public S2CSetSelfViewingCommand(Boolean val)
     {
         super(val);
     }
@@ -12,13 +13,13 @@ public class S2CSetToggleSelfCommand extends AbstractS2CSetCommand<Boolean>
     @Override
     public String getBaseName()
     {
-        return "toggleself";
+        return S2CCommandNames.SetSelfViewing;
     }
 
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {
-        handler.onSetToggleSelfCommand(this);
+        handler.onSetSelfViewingCommand(this);
     }
 
     @Override

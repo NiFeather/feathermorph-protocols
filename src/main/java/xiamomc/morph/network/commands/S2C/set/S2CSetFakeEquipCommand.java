@@ -1,18 +1,32 @@
 package xiamomc.morph.network.commands.S2C.set;
 
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
-public class S2CSetFakeEquipCommand extends AbstractS2CSetCommand<Boolean>
+public abstract class S2CSetFakeEquipCommand<TItemStack> extends AbstractS2CSetCommand<TItemStack>
 {
-    public S2CSetFakeEquipCommand(boolean val)
+    public S2CSetFakeEquipCommand(TItemStack item, ProtocolEquipmentSlot slot)
     {
-        super(val);
+        super(item);
+        this.slot = slot;
+    }
+
+    private final ProtocolEquipmentSlot slot;
+
+    public ProtocolEquipmentSlot getSlot()
+    {
+        return slot;
+    }
+
+    public TItemStack getItemStack()
+    {
+        return getArgumentAt(0);
     }
 
     @Override
     public String getBaseName()
     {
-        return "fake_equip";
+        return S2CCommandNames.SetFakeEquip;
     }
 
     @Override
@@ -21,9 +35,20 @@ public class S2CSetFakeEquipCommand extends AbstractS2CSetCommand<Boolean>
         handler.onSetFakeEquipCommand(this);
     }
 
-    @Override
-    public String buildCommand()
+    public enum ProtocolEquipmentSlot
     {
-        return super.buildCommand() + " " + this.getArgumentAt(0, false);
+        MAINHAND,
+        OFF_HAND,
+
+        HELMET,
+        CHESTPLATE,
+        LEGGINGS,
+        BOOTS;
+
+        @Override
+        public String toString()
+        {
+            return this.name().toLowerCase();
+        }
     }
 }

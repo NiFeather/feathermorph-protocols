@@ -1,6 +1,7 @@
 package xiamomc.morph.network.commands.S2C.set;
 
 import xiamomc.morph.network.commands.S2C.AbstractS2CCommand;
+import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
 import java.util.List;
 
@@ -24,6 +25,6 @@ public abstract class AbstractS2CSetCommand<T> extends AbstractS2CCommand<T>
     @Override
     public String buildCommand()
     {
-        return "set " + getBaseName();
+        return S2CCommandNames.BaseSet + " " + getBaseName();
     }
 }

@@ -8,14 +8,14 @@ public class S2CSetCommandsAgent extends S2CCommandWithChild<Object>
 {
     public S2CSetCommandsAgent()
     {
-        this.register("aggressive", a -> new S2CSetAggressiveCommand(Boolean.getBoolean(a)))
-                .register("fake_equip", a -> new S2CSetFakeEquipCommand(Boolean.getBoolean(a)))
-                .register("profile", S2CSetProfileCommand::new)
-                .register("selfview", S2CSetSelfViewCommand::new)
-                .register("cd", a -> new S2CSetSkillCooldownCommand(Long.parseLong(a)))
-                .register("nbt", S2CSetSNbtCommand::new)
-                .register("sneaking", a -> new S2CSetSneakingCommand(Boolean.getBoolean(a)))
-                .register("toggleself", a -> new S2CSetToggleSelfCommand(Boolean.valueOf(a)));
+        this.register(S2CCommandNames.SetAggressive, a -> new S2CSetAggressiveCommand(Boolean.getBoolean(a)))
+                .register(S2CCommandNames.SetDisplayingFakeEquip, a -> new S2CSetDisplayingFakeEquipCommand(Boolean.getBoolean(a)))
+                .register(S2CCommandNames.SetProfile, S2CSetProfileCommand::new)
+                .register(S2CCommandNames.SetSelfViewIdentifier, S2CSetSelfViewIdentifierCommand::new)
+                .register(S2CCommandNames.SetSkillCooldown, a -> new S2CSetSkillCooldownCommand(Long.parseLong(a)))
+                .register(S2CCommandNames.SetSNbt, S2CSetSNbtCommand::new)
+                .register(S2CCommandNames.SetSneaking, a -> new S2CSetSneakingCommand(Boolean.getBoolean(a)))
+                .register(S2CCommandNames.SetSelfViewing, a -> new S2CSetSelfViewingCommand(Boolean.valueOf(a)));
     }
 
     public S2CSetCommandsAgent register(String baseName, Function<String, AbstractS2CSetCommand<?>> func)
@@ -28,6 +28,6 @@ public class S2CSetCommandsAgent extends S2CCommandWithChild<Object>
     @Override
     public String getBaseName()
     {
-        return "set";
+        return S2CCommandNames.BaseSet;
     }
 }
