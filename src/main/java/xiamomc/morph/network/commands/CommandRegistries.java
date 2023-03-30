@@ -5,46 +5,44 @@ import org.jetbrains.annotations.Nullable;
 import xiamomc.morph.network.commands.C2S.AbstractC2SCommand;
 import xiamomc.morph.network.commands.S2C.AbstractS2CCommand;
 
-public class CommandRegistries<TPlatformPlayer>
+import java.util.function.Function;
+
+public class CommandRegistries
 {
-    private final Object2ObjectArrayMap<String, AbstractC2SCommand<TPlatformPlayer, ?>> c2sCmds = new Object2ObjectArrayMap<>();
-    private final Object2ObjectArrayMap<String, AbstractS2CCommand<?>> s2cCmds = new Object2ObjectArrayMap<>();
+    private final Object2ObjectArrayMap<String, Function<String, AbstractC2SCommand<?>>> c2sCmds = new Object2ObjectArrayMap<>();
+    private final Object2ObjectArrayMap<String, Function<String, AbstractS2CCommand<?>>> s2cCmds = new Object2ObjectArrayMap<>();
 
-    public void register(AbstractC2SCommand<TPlatformPlayer, ?> c2sCmd)
+    /**
+     *
+     * @param name
+     * @param function args -> function
+     * @return
+     */
+    public CommandRegistries registerC2S(String name, Function<String, AbstractC2SCommand<?>> function)
     {
-        c2sCmds.put(c2sCmd.getBaseName(), c2sCmd);
+        c2sCmds.put(name, function);
+
+        return this;
     }
 
-    public void register(AbstractC2SCommand<TPlatformPlayer, ?>... c2sCmds)
+    public CommandRegistries registerS2C(String name, Function<String, AbstractS2CCommand<?>> function)
     {
-        for (AbstractC2SCommand<TPlatformPlayer, ?> cmd : c2sCmds)
-        {
-            this.register(cmd);
-        }
-    }
+        s2cCmds.put(name, function);
 
-    public void register(AbstractS2CCommand<?>... s2cCmds)
-    {
-        for (AbstractS2CCommand<?> s2cCmd : s2cCmds)
-        {
-            this.register(s2cCmd);
-        }
-    }
-
-    public void register(AbstractS2CCommand<?> s2cCmd)
-    {
-        s2cCmds.put(s2cCmd.getBaseName(), s2cCmd);
+        return this;
     }
 
     @Nullable
-    public AbstractS2CCommand<?> getS2CCommand(String baseName)
+    public AbstractS2CCommand<?> createS2CCommand(String baseName, String args)
     {
-        return s2cCmds.getOrDefault(baseName, null);
+        var func = s2cCmds.getOrDefault(baseName, null);
+        return func == null ? null : func.apply(args);
     }
 
     @Nullable
-    public AbstractC2SCommand<TPlatformPlayer, ?> getC2SCommand(String baseName)
+    public AbstractC2SCommand<?> createC2SCommand(String baseName, String args)
     {
-        return c2sCmds.getOrDefault(baseName, null);
+        var func = c2sCmds.getOrDefault(baseName, null);
+        return func == null ? null : func.apply(args);
     }
 }

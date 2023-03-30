@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import xiamomc.morph.network.BasicServerHandler;
 import xiamomc.morph.network.Constants;
 
 import java.util.ArrayList;
@@ -41,11 +42,7 @@ public abstract class AbstractS2CCommand<T>
 
     public abstract String getBaseName();
 
-    /**
-     * 带 {@link AbstractS2CCommand#getBaseName()} 的详细参数
-     * @param arguments 由服务端发来的参数
-     */
-    public void onCommand(String arguments) { }
+    public abstract void onCommand(BasicServerHandler<?> handler);
 
     public String buildCommand()
     {
@@ -61,7 +58,7 @@ public abstract class AbstractS2CCommand<T>
         return gson;
     }
 
-    protected String serializeArguments()
+    public String serializeArguments()
     {
         if (arguments.size() == 0) return "";
 
@@ -73,13 +70,13 @@ public abstract class AbstractS2CCommand<T>
     }
 
     @Nullable
-    protected T getArgumentAt(int index)
+    public T getArgumentAt(int index)
     {
         return index >= arguments.size() ? null : arguments.get(index);
     }
 
     @NotNull
-    protected T getArgumentAt(int index, @NotNull T defaultValue)
+    public T getArgumentAt(int index, @NotNull T defaultValue)
     {
         var val = this.getArgumentAt(index);
 

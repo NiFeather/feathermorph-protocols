@@ -1,6 +1,7 @@
 package xiamomc.morph.network;
 
 import org.jetbrains.annotations.Nullable;
+import xiamomc.morph.network.commands.C2S.*;
 import xiamomc.morph.network.commands.S2C.AbstractS2CCommand;
 
 import java.util.List;
@@ -62,4 +63,15 @@ public interface BasicClientHandler<TPlatformPlayer>
      * @return 操作是否成功
      */
     public abstract boolean sendCommand(TPlatformPlayer player, AbstractS2CCommand<?> command);
+
+    //region Commands
+
+    void onInitialCommand(C2SInitialCommand command);
+    void onMorphCommand(C2SMorphCommand command);
+    void onOptionCommand(C2SOptionCommand command);
+    void onSkillCommand(C2SSkillCommand command);
+    void onToggleSelfCommand(C2SToggleSelfCommand command);
+    void onUnmorphCommand(C2SUnmorphCommand command);
+
+    //endregion
 }

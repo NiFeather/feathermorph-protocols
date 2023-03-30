@@ -2,6 +2,7 @@ package xiamomc.morph.network.commands.C2S;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import xiamomc.morph.network.BasicClientHandler;
 import xiamomc.morph.network.BasicServerHandler;
 import xiamomc.morph.network.Constants;
 import xiamomc.morph.network.annotations.Environment;
@@ -11,8 +12,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractC2SCommand<TPlatformPlayer, T>
+public abstract class AbstractC2SCommand<T>
 {
+    public abstract String getBaseName();
+
     public AbstractC2SCommand()
     {
         arguments = new ArrayList<>();
@@ -31,8 +34,7 @@ public abstract class AbstractC2SCommand<TPlatformPlayer, T>
     @NotNull
     protected List<T> arguments;
 
-    @SafeVarargs
-    private List<T> toList(T... elements)
+    protected List<T> toList(T... elements)
     {
         if (elements == null)
             return new ArrayList<>();
@@ -40,42 +42,47 @@ public abstract class AbstractC2SCommand<TPlatformPlayer, T>
         return Arrays.stream(elements).toList();
     }
 
-    public abstract String getBaseName();
+    public abstract void onCommand(BasicClientHandler<?> listener);
 
-    /**
-     * @param rawArguments 由客户端发来的参数
-     */
-    public void onCommand(TPlatformPlayer player, String rawArguments) { }
+    private Object owner;
+    public <TPlayer> void setOwner(TPlayer player)
+    {
+        this.owner = player;
+    }
+
+    public <TPlayer> TPlayer getOwner()
+    {
+        return (TPlayer) owner;
+    }
 
     public String buildCommand()
     {
-        return getBaseName();
+        return (getBaseName() + " " + serializeArguments()).trim();
     }
 
     //region Utilities
 
-    protected T getArgumentAt(List<T> arguments, int index, @NotNull T defaultValue)
+    public String serializeArguments()
     {
-        var val = this.getArgumentAt(arguments, index);
+        if (arguments.size() == 0) return "";
 
-        return val == null ? defaultValue : val;
+        var builder = new StringBuilder();
+        for (T argument : arguments)
+            builder.append(argument).append(" ");
+
+        return builder.toString();
     }
 
-    protected T getArgumentAt(List<T> arguments, int index)
+    @Nullable
+    public T getArgumentAt(int index)
     {
         return index >= arguments.size() ? null : arguments.get(index);
     }
 
-    @Nullable
-    protected T getArgumentAt(T[] arguments, int index)
-    {
-        return index >= arguments.length ? null : arguments[index];
-    }
-
     @NotNull
-    protected T getArgumentAt(T[] arguments, int index, @NotNull T defaultValue)
+    public T getArgumentAt(int index, @NotNull T defaultValue)
     {
-        var val = this.getArgumentAt(arguments, index);
+        var val = this.getArgumentAt(index);
 
         return val == null ? defaultValue : val;
     }

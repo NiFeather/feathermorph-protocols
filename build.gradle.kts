@@ -3,7 +3,7 @@ plugins {
     `maven-publish`
 }
 
-group = "xiamomc.morph"
+group = "com.github.XiaMoZhiShi"
 version = "0.10.0.01"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
