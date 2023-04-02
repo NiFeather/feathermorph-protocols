@@ -18,6 +18,7 @@ public class S2CCommandNames
     public static final String SetSNbt = "nbt";
     public static final String SetSneaking = "sneaking";
     public static final String SetSelfViewing = "toggleself";
+    public static final String SetModifyBoundingBox = "boundingbox";
 
     @Deprecated
     public static final String SetNbt = SetSNbt;

@@ -29,9 +29,24 @@ public class C2SToggleSelfCommand extends AbstractC2SCommand<C2SToggleSelfComman
 
     public enum SelfViewMode
     {
+        /**
+         * 启用自身可见
+         */
         ON("true"),
+
+        /**
+         * 禁用自身可见
+         */
         OFF("false"),
-        CLIENT_ON("client true"), //确保与版本3的接口兼容
+
+        /**
+         * 声明自身可见将被客户端处理
+         */
+        CLIENT_ON("client true"),
+
+        /**
+         * 声明自身可见不再被客户端处理
+         */
         CLIENT_OFF("client false");
 
         private final String networkName;

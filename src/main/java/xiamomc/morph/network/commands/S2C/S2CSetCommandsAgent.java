@@ -15,7 +15,8 @@ public class S2CSetCommandsAgent extends S2CCommandWithChild<Object>
                 .register(S2CCommandNames.SetSkillCooldown, a -> new S2CSetSkillCooldownCommand(Long.parseLong(a)))
                 .register(S2CCommandNames.SetSNbt, S2CSetSNbtCommand::new)
                 .register(S2CCommandNames.SetSneaking, a -> new S2CSetSneakingCommand(Boolean.parseBoolean(a)))
-                .register(S2CCommandNames.SetSelfViewing, a -> new S2CSetSelfViewingCommand(Boolean.valueOf(a)));
+                .register(S2CCommandNames.SetSelfViewing, a -> new S2CSetSelfViewingCommand(Boolean.parseBoolean(a)))
+                .register(S2CCommandNames.SetModifyBoundingBox, a -> new S2CSetModifyBoundingBoxCommand(Boolean.parseBoolean(a)));
     }
 
     public S2CSetCommandsAgent register(String baseName, Function<String, AbstractS2CSetCommand<?>> func)

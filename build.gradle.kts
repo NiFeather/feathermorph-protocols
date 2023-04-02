@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.XiaMoZhiShi"
-version = "0.10.0.01"
+version = "0.10.0.04"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
