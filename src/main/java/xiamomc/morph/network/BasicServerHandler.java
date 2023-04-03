@@ -39,6 +39,7 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetSneakingCommand(S2CSetSneakingCommand command);
     void onSetSelfViewingCommand(S2CSetSelfViewingCommand command);
     void onSetModifyBoundingBox(S2CSetModifyBoundingBoxCommand command);
+    void onSetReach(S2CSetReachCommand command);
 
     //endregion Commands
 }
