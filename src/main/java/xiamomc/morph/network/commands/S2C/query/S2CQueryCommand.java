@@ -47,7 +47,8 @@ public class S2CQueryCommand extends AbstractS2CCommand<String>
     @Override
     public String buildCommand()
     {
-        return this.getBaseName() + " " + queryType.name().toLowerCase() + " " + serializeArguments();
+        return this.getBaseName() + " " + queryType.name().toLowerCase()
+                + (arguments.size() > 0 ? (" " + serializeArguments()) : "");
     }
 
     @Override
