@@ -13,10 +13,10 @@ public class S2CQueryCommand extends AbstractS2CCommand<String>
     public static S2CQueryCommand from(String rawArg)
     {
         var spilt = rawArg.split(" ", 2);
-        if (spilt.length < 2) return null;
+        if (spilt.length < 1) return null;
 
         var type = QueryType.tryValueOf(spilt[0].toUpperCase());
-        return new S2CQueryCommand(type, spilt[1].split(" "));
+        return new S2CQueryCommand(type, spilt.length == 2 ? spilt[1].split(" ") : new String[]{});
     }
 
     public S2CQueryCommand(QueryType queryType, String... diff)
