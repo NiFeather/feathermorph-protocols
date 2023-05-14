@@ -1,6 +1,8 @@
 package xiamomc.morph.network.commands.S2C.set;
 
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
 public class S2CSetProfileCommand extends AbstractS2CSetCommand<String>
@@ -16,6 +18,7 @@ public class S2CSetProfileCommand extends AbstractS2CSetCommand<String>
         return S2CCommandNames.SetProfile;
     }
 
+    @Environment(EnvironmentType.CLIENT)
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {

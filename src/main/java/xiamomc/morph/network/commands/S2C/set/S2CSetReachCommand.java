@@ -1,6 +1,8 @@
 package xiamomc.morph.network.commands.S2C.set;
 
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
 public class S2CSetReachCommand extends AbstractS2CSetCommand<Integer>
@@ -21,6 +23,7 @@ public class S2CSetReachCommand extends AbstractS2CSetCommand<Integer>
         return getArgumentAt(0, -1);
     }
 
+    @Environment(EnvironmentType.CLIENT)
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {

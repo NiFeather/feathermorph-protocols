@@ -3,10 +3,8 @@ package xiamomc.morph.network.commands.C2S;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xiamomc.morph.network.BasicClientHandler;
-import xiamomc.morph.network.BasicServerHandler;
-import xiamomc.morph.network.Constants;
 import xiamomc.morph.network.annotations.Environment;
-import xiamomc.morph.network.annotations.Type;
+import xiamomc.morph.network.annotations.EnvironmentType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +40,7 @@ public abstract class AbstractC2SCommand<T>
         return Arrays.stream(elements).toList();
     }
 
+    @Environment(EnvironmentType.SERVER)
     public abstract void onCommand(BasicClientHandler<?> listener);
 
     private Object owner;

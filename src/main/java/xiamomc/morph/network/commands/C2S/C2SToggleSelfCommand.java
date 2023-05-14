@@ -1,6 +1,8 @@
 package xiamomc.morph.network.commands.C2S;
 
 import xiamomc.morph.network.BasicClientHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 
 public class C2SToggleSelfCommand extends AbstractC2SCommand<C2SToggleSelfCommand.SelfViewMode>
 {
@@ -21,6 +23,7 @@ public class C2SToggleSelfCommand extends AbstractC2SCommand<C2SToggleSelfComman
         return C2SCommandNames.ToggleSelf;
     }
 
+    @Environment(EnvironmentType.SERVER)
     @Override
     public void onCommand(BasicClientHandler<?> listener)
     {

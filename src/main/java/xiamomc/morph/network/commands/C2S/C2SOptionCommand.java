@@ -3,6 +3,8 @@ package xiamomc.morph.network.commands.C2S;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xiamomc.morph.network.BasicClientHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 
 import java.util.Arrays;
 import java.util.Objects;
@@ -14,6 +16,7 @@ public class C2SOptionCommand extends AbstractC2SCommand<C2SOptionCommand.Client
         super(option);
     }
 
+    @Environment(EnvironmentType.SERVER)
     @Override
     public void onCommand(BasicClientHandler<?> listener)
     {

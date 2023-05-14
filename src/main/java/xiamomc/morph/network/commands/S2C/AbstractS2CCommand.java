@@ -6,6 +6,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xiamomc.morph.network.BasicServerHandler;
 import xiamomc.morph.network.Constants;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +44,7 @@ public abstract class AbstractS2CCommand<T>
 
     public abstract String getBaseName();
 
+    @Environment(EnvironmentType.CLIENT)
     public abstract void onCommand(BasicServerHandler<?> handler);
 
     public String buildCommand()

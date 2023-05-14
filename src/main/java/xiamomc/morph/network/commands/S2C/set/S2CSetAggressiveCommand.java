@@ -1,6 +1,8 @@
 package xiamomc.morph.network.commands.S2C.set;
 
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
 public class S2CSetAggressiveCommand extends AbstractS2CSetCommand<Boolean>
@@ -16,6 +18,7 @@ public class S2CSetAggressiveCommand extends AbstractS2CSetCommand<Boolean>
         return S2CCommandNames.SetAggressive;
     }
 
+    @Environment(EnvironmentType.CLIENT)
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {

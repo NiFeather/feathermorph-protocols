@@ -8,6 +8,14 @@ public class S2CCommandNames
     public static final String SwapHands = "swap";
     public static final String Query = "query";
 
+    public static final String Request = "request";
+    public static final String RequestNew = "new";
+    public static final String RequestExpire = "expire";
+    public static final String RequestExpireOwner = "expire_owner";
+    public static final String RequestAccept = "player_accept";
+    public static final String RequestDenied = "player_deny";
+    public static final String RequestSend = "send_success";
+
     public static final String BaseSet = "set";
     public static final String SetAggressive = "aggressive";
     public static final String SetFakeEquip = "equip";

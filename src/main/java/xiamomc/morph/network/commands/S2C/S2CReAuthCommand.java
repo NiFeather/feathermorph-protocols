@@ -1,6 +1,8 @@
 package xiamomc.morph.network.commands.S2C;
 
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 
 public class S2CReAuthCommand extends AbstractS2CCommand<String>
 {
@@ -10,6 +12,7 @@ public class S2CReAuthCommand extends AbstractS2CCommand<String>
         return S2CCommandNames.ReAuth;
     }
 
+    @Environment(EnvironmentType.CLIENT)
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {

@@ -6,6 +6,6 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.FIELD, ElementType.CONSTRUCTOR})
 public @interface Environment
 {
-    Type value();
+    EnvironmentType value();
 }
 

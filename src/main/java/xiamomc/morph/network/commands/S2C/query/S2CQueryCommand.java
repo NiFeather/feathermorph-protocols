@@ -2,6 +2,8 @@ package xiamomc.morph.network.commands.S2C.query;
 
 import org.jetbrains.annotations.Nullable;
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 import xiamomc.morph.network.commands.S2C.AbstractS2CCommand;
 import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
@@ -51,6 +53,7 @@ public class S2CQueryCommand extends AbstractS2CCommand<String>
                 + (arguments.size() > 0 ? (" " + serializeArguments()) : "");
     }
 
+    @Environment(EnvironmentType.CLIENT)
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {

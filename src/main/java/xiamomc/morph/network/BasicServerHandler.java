@@ -1,13 +1,14 @@
 package xiamomc.morph.network;
 
 import xiamomc.morph.network.commands.C2S.*;
-import xiamomc.morph.network.commands.S2C.S2CCurrentCommand;
-import xiamomc.morph.network.commands.S2C.S2CReAuthCommand;
-import xiamomc.morph.network.commands.S2C.S2CSwapCommand;
-import xiamomc.morph.network.commands.S2C.S2CUnAuthCommand;
+import xiamomc.morph.network.commands.S2C.*;
 import xiamomc.morph.network.commands.S2C.query.S2CQueryCommand;
 import xiamomc.morph.network.commands.S2C.set.*;
 
+/**
+ * A handler that process commands from servers send to the client
+ * @param <TPlatformPlayer> The class type of player on the client platform
+ */
 public interface BasicServerHandler<TPlatformPlayer>
 {
     public abstract void connect();
@@ -40,6 +41,8 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetSelfViewingCommand(S2CSetSelfViewingCommand command);
     void onSetModifyBoundingBox(S2CSetModifyBoundingBoxCommand command);
     void onSetReach(S2CSetReachCommand command);
+
+    void onExchangeRequestReceive(S2CRequestCommand command);
 
     //endregion Commands
 }

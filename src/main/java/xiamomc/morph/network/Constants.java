@@ -2,7 +2,7 @@ package xiamomc.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = 6;
+    public static final int PROTOCOL_VERSION = ApiLevel.REQUEST_HANDLING.protocolVersion;
     private static Boolean IsServer = null;
 
     public static boolean isServer()
@@ -21,10 +21,32 @@ public class Constants
     public enum ApiLevel
     {
         LEGACY(1),
+
+        /**
+         * Deny commands before initialization is done (Both server and client side)
+         */
         DENY_EARLY_COMMANDS(2),
+
+        /**
+         * S2CSwapCommand and C2SSKillCommand
+         */
         SWAP_AND_SKILL(3),
+
+        /**
+         * Protocol becomes a independent libarary
+         */
         INDEPENDENT_PROTOCOL(5),
-        BOUNDINGBOX_AND_REACH(6);
+
+        /**
+         * S2CSetBoundingBox and S2CSetReach command
+         */
+        BOUNDINGBOX_AND_REACH(6),
+
+        /**
+         * Server <-> Client Exchange request handling
+         */
+        REQUEST_HANDLING(7)
+        ;
 
         public final int protocolVersion;
 

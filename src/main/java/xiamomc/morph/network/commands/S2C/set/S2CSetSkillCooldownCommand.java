@@ -1,6 +1,8 @@
 package xiamomc.morph.network.commands.S2C.set;
 
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
 public class S2CSetSkillCooldownCommand extends AbstractS2CSetCommand<Long>
@@ -16,6 +18,7 @@ public class S2CSetSkillCooldownCommand extends AbstractS2CSetCommand<Long>
         return S2CCommandNames.SetSkillCooldown;
     }
 
+    @Environment(EnvironmentType.CLIENT)
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {

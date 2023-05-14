@@ -6,6 +6,10 @@ import xiamomc.morph.network.commands.S2C.AbstractS2CCommand;
 
 import java.util.List;
 
+/**
+ * A handler that process commands from clients send to the server
+ * @param <TPlatformPlayer> The class type of player on the server platform
+ */
 public interface BasicClientHandler<TPlatformPlayer>
 {
     /**
@@ -72,6 +76,7 @@ public interface BasicClientHandler<TPlatformPlayer>
     void onSkillCommand(C2SSkillCommand command);
     void onToggleSelfCommand(C2SToggleSelfCommand command);
     void onUnmorphCommand(C2SUnmorphCommand command);
+    void onRequestCommand(C2SRequestCommand command);
 
     //endregion
 }

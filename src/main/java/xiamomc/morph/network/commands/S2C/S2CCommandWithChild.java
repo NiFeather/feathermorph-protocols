@@ -3,6 +3,8 @@ package xiamomc.morph.network.commands.S2C;
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import org.jetbrains.annotations.Nullable;
 import xiamomc.morph.network.BasicServerHandler;
+import xiamomc.morph.network.annotations.Environment;
+import xiamomc.morph.network.annotations.EnvironmentType;
 import xiamomc.morph.network.commands.S2C.set.AbstractS2CSetCommand;
 
 import java.util.Map;
@@ -24,6 +26,7 @@ public abstract class S2CCommandWithChild<T> extends AbstractS2CCommand<T>
         return this;
     }
 
+    @Environment(EnvironmentType.CLIENT)
     @Override
     public final void onCommand(BasicServerHandler<?> handler)
     {
