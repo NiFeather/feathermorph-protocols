@@ -5,6 +5,11 @@ import xiamomc.morph.network.commands.S2C.S2CCommandNames;
 
 public class S2CSetSpiderCommand extends AbstractS2CSetCommand<Boolean>
 {
+    public S2CSetSpiderCommand(boolean isSpider)
+    {
+        super(isSpider);
+    }
+
     @Override
     public String getBaseName()
     {
@@ -20,5 +25,11 @@ public class S2CSetSpiderCommand extends AbstractS2CSetCommand<Boolean>
     public void onCommand(BasicServerHandler<?> handler)
     {
         handler.onSetSpider(this);
+    }
+
+    @Override
+    public String buildCommand()
+    {
+        return super.buildCommand() + " " + serializeArguments();
     }
 }
