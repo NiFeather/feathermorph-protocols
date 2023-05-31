@@ -2,7 +2,7 @@ package xiamomc.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.REQUEST_HANDLING.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.SPIDER.protocolVersion;
     private static Boolean IsServer = null;
 
     public static boolean isServer()
@@ -16,6 +16,11 @@ public class Constants
             throw new RuntimeException("Already initialized once!");
 
         IsServer = isServer;
+    }
+
+    public static void dispose()
+    {
+        IsServer = null;
     }
 
     public enum ApiLevel
@@ -45,7 +50,9 @@ public class Constants
         /**
          * Server <-> Client Exchange request handling
          */
-        REQUEST_HANDLING(7)
+        REQUEST_HANDLING(7),
+
+        SPIDER(8)
         ;
 
         public final int protocolVersion;

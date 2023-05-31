@@ -41,6 +41,7 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetSelfViewingCommand(S2CSetSelfViewingCommand command);
     void onSetModifyBoundingBox(S2CSetModifyBoundingBoxCommand command);
     void onSetReach(S2CSetReachCommand command);
+    void onSetSpider(S2CSetSpiderCommand command);
 
     void onExchangeRequestReceive(S2CRequestCommand command);
 
