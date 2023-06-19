@@ -2,7 +2,7 @@ package xiamomc.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.SPIDER.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.REVEALING.protocolVersion;
     private static Boolean IsServer = null;
 
     public static boolean isServer()
@@ -16,6 +16,11 @@ public class Constants
             throw new RuntimeException("Already initialized once!");
 
         IsServer = isServer;
+    }
+
+    public static void unInitialize()
+    {
+        IsServer = null;
     }
 
     public static void dispose()
@@ -37,6 +42,9 @@ public class Constants
          */
         SWAP_AND_SKILL(3),
 
+        @Deprecated(forRemoval = true)
+        PREINDEPENDENT_PROTOCOL(4),
+
         /**
          * Protocol becomes a independent libarary
          */
@@ -52,7 +60,18 @@ public class Constants
          */
         REQUEST_HANDLING(7),
 
-        SPIDER(8)
+        /**
+         * S2CSetSpiderCommand
+         *
+         * @deprecated Triggers anti-cheat and doesn't consider latency
+         */
+        @Deprecated
+        SPIDER(8),
+
+        /**
+         * Revealing State (S2CSetRevealingCommand)
+         */
+        REVEALING(9)
         ;
 
         public final int protocolVersion;

@@ -28,8 +28,15 @@ public class S2CCommandNames
     public static final String SetSelfViewing = "toggleself";
     public static final String SetModifyBoundingBox = "boundingbox";
     public static final String SetReach = "reach";
-    public static final String SetSpider = "spider";
+    public static final String SetRevealing = "reveal";
 
     @Deprecated
     public static final String SetNbt = SetSNbt;
+
+
+    /**
+     * 已废弃
+     */
+    @Deprecated
+    public static final String SetSpider = "spider";
 }
