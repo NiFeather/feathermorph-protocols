@@ -30,6 +30,11 @@ public class S2CCommandNames
     public static final String SetReach = "reach";
     public static final String SetRevealing = "reveal";
 
+    public static final String Map = "map";
+    public static final String MapPartial = "mapp";
+    public static final String MapClear = "mapc";
+    public static final String MapRemove = "mapr";
+
     @Deprecated
     public static final String SetNbt = SetSNbt;
 

@@ -2,6 +2,7 @@ package xiamomc.morph.network;
 
 import xiamomc.morph.network.commands.C2S.*;
 import xiamomc.morph.network.commands.S2C.*;
+import xiamomc.morph.network.commands.S2C.map.*;
 import xiamomc.morph.network.commands.S2C.query.S2CQueryCommand;
 import xiamomc.morph.network.commands.S2C.set.*;
 
@@ -47,6 +48,11 @@ public interface BasicServerHandler<TPlatformPlayer>
     default void onSetSpider(S2CSetSpiderCommand command) { };
 
     void onExchangeRequestReceive(S2CRequestCommand command);
+
+    void onMapCommand(S2CMapCommand command);
+    void onMapPartialCommand(S2CPartialMapCommand command);
+    void onMapClearCommand(S2CMapClearCommand command);
+    void onMapRemoveCommand(S2CMapRemoveCommand command);
 
     //endregion Commands
 }

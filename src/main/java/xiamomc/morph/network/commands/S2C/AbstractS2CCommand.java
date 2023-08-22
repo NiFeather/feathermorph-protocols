@@ -56,7 +56,7 @@ public abstract class AbstractS2CCommand<T>
 
     private static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 
-    protected Gson gson()
+    protected static Gson gson()
     {
         return gson;
     }
