@@ -35,6 +35,12 @@ public class S2CCommandNames
     public static final String MapClear = "mapc";
     public static final String MapRemove = "mapr";
 
+    public static final String CRMap = "crm";
+    public static final String CRAdd = "cra";
+    public static final String CRRemove = "crrm";
+    public static final String CRClear = "crc";
+    public static final String CRMeta = "crmeta";
+
     @Deprecated
     public static final String SetNbt = SetSNbt;
 

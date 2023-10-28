@@ -2,6 +2,7 @@ package xiamomc.morph.network;
 
 import xiamomc.morph.network.commands.C2S.*;
 import xiamomc.morph.network.commands.S2C.*;
+import xiamomc.morph.network.commands.S2C.clientrender.*;
 import xiamomc.morph.network.commands.S2C.map.*;
 import xiamomc.morph.network.commands.S2C.query.S2CQueryCommand;
 import xiamomc.morph.network.commands.S2C.set.*;
@@ -44,15 +45,26 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetReach(S2CSetReachCommand command);
     void onSetRevealing(S2CSetRevealingCommand command);
 
-    @Deprecated
-    default void onSetSpider(S2CSetSpiderCommand command) { };
-
     void onExchangeRequestReceive(S2CRequestCommand command);
+
+    //region MapCommands
 
     void onMapCommand(S2CMapCommand command);
     void onMapPartialCommand(S2CPartialMapCommand command);
     void onMapClearCommand(S2CMapClearCommand command);
     void onMapRemoveCommand(S2CMapRemoveCommand command);
+
+    //endregion MapCommands
+
+    //region ClientRenderer
+
+    void onClientMapSyncCommand(S2CRenderMapSyncCommand command);
+    void onClientMapAddCommand(S2CRenderMapAddCommand command);
+    void onClientMapRemoveCommand(S2CRenderMapRemoveCommand command);
+    void onClientMapClearCommand(S2CRenderMapClearCommand command);
+    void onClientMapMetaNbtCommand(S2CRenderMapMetaCommand command);
+
+    //endregion ClientRenderer
 
     //endregion Commands
 }
