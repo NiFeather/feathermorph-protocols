@@ -2,7 +2,7 @@ package xiamomc.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.ADMIN_REVEALING.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.CLIENT_RENDERER_V1.protocolVersion;
     private static Boolean IsServer = null;
 
     public static boolean isServer()
@@ -76,7 +76,12 @@ public class Constants
         /**
          * Admin revealing (Display player name above their disguise)
          */
-        ADMIN_REVEALING(10)
+        ADMIN_REVEALING(10),
+
+        /**
+         * Client renderer protocol V1
+         */
+        CLIENT_RENDERER_V1(11)
         ;
 
         public final int protocolVersion;
