@@ -2,7 +2,8 @@ package xiamomc.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.CLIENT_RENDERER_V1.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.ANIMATION.protocolVersion;
+
     private static Boolean IsServer = null;
 
     public static boolean isServer()
@@ -81,7 +82,12 @@ public class Constants
         /**
          * Client renderer protocol V1
          */
-        CLIENT_RENDERER_V1(11)
+        CLIENT_RENDERER_V1(11),
+
+        /**
+         * Animation command
+         */
+        ANIMATION(12)
         ;
 
         public final int protocolVersion;
