@@ -12,7 +12,12 @@ public class S2CAnimationCommand extends AbstractS2CCommand<String>
     @Override
     public String getBaseName()
     {
-        return "animation";
+        return S2CCommandNames.Animation;
+    }
+
+    public String getAnimId()
+    {
+        return getArgumentAt(0, "nil");
     }
 
     @Override

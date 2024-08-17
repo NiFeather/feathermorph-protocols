@@ -18,7 +18,8 @@ public class S2CSetCommandsAgent extends S2CCommandWithChild<Object>
                 .register(S2CCommandNames.SetSelfViewing, a -> new S2CSetSelfViewingCommand(Boolean.parseBoolean(a)))
                 .register(S2CCommandNames.SetModifyBoundingBox, a -> new S2CSetModifyBoundingBoxCommand(Boolean.parseBoolean(a)))
                 .register(S2CCommandNames.SetReach, a -> new S2CSetReachCommand(Integer.parseInt(a)))
-                .register(S2CCommandNames.SetAvailableAnimations, S2CSetAvailableAnimationsCommand::fromString);
+                .register(S2CCommandNames.SetAvailableAnimations, S2CSetAvailableAnimationsCommand::fromString)
+                .register(S2CCommandNames.SetAnimationDisplayName, S2CSetAnimationDisplayNameCommand::new);
     }
 
     public S2CSetCommandsAgent register(String baseName, Function<String, AbstractS2CSetCommand<?>> func)

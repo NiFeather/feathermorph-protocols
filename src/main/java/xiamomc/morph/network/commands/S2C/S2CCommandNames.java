@@ -30,11 +30,14 @@ public class S2CCommandNames
     public static final String SetReach = "reach";
     public static final String SetRevealing = "reveal";
     public static final String SetAvailableAnimations = "avail_anim";
+    public static final String SetAnimationDisplayName = "set_anim_display";
 
     public static final String Map = "map";
     public static final String MapPartial = "mapp";
     public static final String MapClear = "mapc";
     public static final String MapRemove = "mapr";
+
+    public static final String Animation = "animation";
 
     public static final String CRMap = "crm";
     public static final String CRAdd = "cra";

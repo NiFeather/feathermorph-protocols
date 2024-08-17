@@ -68,6 +68,7 @@ public interface BasicServerHandler<TPlatformPlayer>
 
     void onAnimationCommand(S2CAnimationCommand command);
     void onValidAnimationsCommand(S2CSetAvailableAnimationsCommand command);
+    void onSetAnimationDisplayCommand(S2CSetAnimationDisplayNameCommand command);
 
     //endregion Commands
 }
