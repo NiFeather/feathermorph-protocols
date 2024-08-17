@@ -25,6 +25,6 @@ public abstract class AbstractS2CSetCommand<T> extends AbstractS2CCommand<T>
     @Override
     public String buildCommand()
     {
-        return S2CCommandNames.BaseSet + " " + getBaseName();
+        return (S2CCommandNames.BaseSet + " " + getBaseName() + " " + serializeArguments()).trim();
     }
 }
