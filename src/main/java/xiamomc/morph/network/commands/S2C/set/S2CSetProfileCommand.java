@@ -24,10 +24,4 @@ public class S2CSetProfileCommand extends AbstractS2CSetCommand<String>
     {
         handler.onSetProfileCommand(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + this.getArgumentAt(0, "{}");
-    }
 }

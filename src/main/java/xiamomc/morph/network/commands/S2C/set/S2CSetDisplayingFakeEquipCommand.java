@@ -24,10 +24,4 @@ public class S2CSetDisplayingFakeEquipCommand extends AbstractS2CSetCommand<Bool
     {
         handler.onSetDisplayingFakeEquipCommand(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + this.getArgumentAt(0, false);
-    }
 }

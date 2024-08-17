@@ -23,10 +23,4 @@ public class S2CSetSneakingCommand extends AbstractS2CSetCommand<Boolean>
     {
         handler.onSetSneakingCommand(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + this.getArgumentAt(0, false);
-    }
 }

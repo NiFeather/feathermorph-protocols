@@ -24,10 +24,4 @@ public class S2CSetAggressiveCommand extends AbstractS2CSetCommand<Boolean>
     {
         handler.onSetAggressiveCommand(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + getArgumentAt(0, false);
-    }
 }

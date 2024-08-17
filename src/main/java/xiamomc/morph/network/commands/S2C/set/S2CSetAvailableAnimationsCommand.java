@@ -38,12 +38,6 @@ public class S2CSetAvailableAnimationsCommand extends AbstractS2CSetCommand<Stri
         handler.onValidAnimationsCommand(this);
     }
 
-    @Override
-    public String buildCommand()
-    {
-        return (super.buildCommand() + " " + this.serializeArguments()).trim();
-    }
-
     public static S2CSetAvailableAnimationsCommand fromString(String arg)
     {
         return new S2CSetAvailableAnimationsCommand(arg.split(" "));

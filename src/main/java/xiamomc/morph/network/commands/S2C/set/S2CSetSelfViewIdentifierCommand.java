@@ -24,10 +24,4 @@ public class S2CSetSelfViewIdentifierCommand extends AbstractS2CSetCommand<Strin
     {
         handler.onSetSelfViewIdentifierCommand(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + this.getArgumentAt(0, "");
-    }
 }

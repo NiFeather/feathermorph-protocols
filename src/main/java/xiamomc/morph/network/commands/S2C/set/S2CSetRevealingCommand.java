@@ -26,10 +26,4 @@ public class S2CSetRevealingCommand extends AbstractS2CSetCommand<Float>
     {
         return getArgumentAt(0, 0f);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + this.serializeArguments();
-    }
 }

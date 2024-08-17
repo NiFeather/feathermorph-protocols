@@ -24,10 +24,4 @@ public class S2CSetSkillCooldownCommand extends AbstractS2CSetCommand<Long>
     {
         handler.onSetSkillCooldownCommand(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + getArgumentAt(0, 0L);
-    }
 }

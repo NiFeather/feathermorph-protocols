@@ -24,10 +24,4 @@ public class S2CSetSNbtCommand extends AbstractS2CSetCommand<String>
     {
         handler.onSetSNbtCommand(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + this.getArgumentAt(0, "{}");
-    }
 }

@@ -24,10 +24,4 @@ public class S2CSetSelfViewingCommand extends AbstractS2CSetCommand<Boolean>
     {
         handler.onSetSelfViewingCommand(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + this.getArgumentAt(0, true);
-    }
 }

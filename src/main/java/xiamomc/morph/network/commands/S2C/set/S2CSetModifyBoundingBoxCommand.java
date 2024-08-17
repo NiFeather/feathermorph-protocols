@@ -29,10 +29,4 @@ public class S2CSetModifyBoundingBoxCommand extends AbstractS2CSetCommand<Boolea
     {
         handler.onSetModifyBoundingBox(this);
     }
-
-    @Override
-    public String buildCommand()
-    {
-        return super.buildCommand() + " " + getModifyBoundingBox();
-    }
 }
