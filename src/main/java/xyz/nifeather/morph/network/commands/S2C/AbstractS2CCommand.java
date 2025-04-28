@@ -2,6 +2,8 @@ package xyz.nifeather.morph.network.commands.S2C;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import it.unimi.dsi.fastutil.objects.ObjectLists;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import xyz.nifeather.morph.network.BasicServerHandler;
@@ -12,6 +14,7 @@ import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class AbstractS2CCommand<T>
 {
@@ -47,9 +50,14 @@ public abstract class AbstractS2CCommand<T>
     @Environment(EnvironmentType.CLIENT)
     public abstract void onCommand(BasicServerHandler<?> handler);
 
-    public String buildCommand()
+    public List<String> buildCommand()
     {
-        return (getBaseName() + " " + serializeArguments()).trim();
+        var list = new ObjectArrayList<String>();
+
+        list.add(this.getBaseName());
+        list.addAll(this.serializeArgumentList());
+
+        return list;
     }
 
     //region Utilities
@@ -61,15 +69,16 @@ public abstract class AbstractS2CCommand<T>
         return gson;
     }
 
-    public String serializeArguments()
+    protected String serializeArgumentSingle(T arg)
     {
-        if (arguments.size() == 0) return "";
+        return arg.toString();
+    }
 
-        var builder = new StringBuilder();
-        for (T argument : arguments)
-            builder.append(argument).append(" ");
-
-        return builder.toString().trim();
+    public List<String> serializeArgumentList()
+    {
+        return arguments.stream()
+                .map(this::serializeArgumentSingle)
+                .collect(Collectors.toList());
     }
 
     @Nullable

@@ -1,5 +1,6 @@
 package xyz.nifeather.morph.network.commands.S2C.set;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 
@@ -23,8 +24,13 @@ public abstract class AbstractS2CSetCommand<T> extends AbstractS2CCommand<T>
     }
 
     @Override
-    public String buildCommand()
+    public List<String> buildCommand()
     {
-        return (S2CCommandNames.BaseSet + " " + getBaseName() + " " + serializeArguments()).trim();
+        var list = new ObjectArrayList<String>();
+
+        list.add(S2CCommandNames.BaseSet);
+        list.addAll(super.buildCommand());
+
+        return list;
     }
 }

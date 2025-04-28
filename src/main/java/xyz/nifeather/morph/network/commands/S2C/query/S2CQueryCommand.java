@@ -1,5 +1,6 @@
 package xyz.nifeather.morph.network.commands.S2C.query;
 
+import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import org.jetbrains.annotations.Nullable;
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.annotations.Environment;
@@ -47,10 +48,14 @@ public class S2CQueryCommand extends AbstractS2CCommand<String>
     }
 
     @Override
-    public String buildCommand()
+    public List<String> serializeArgumentList()
     {
-        return this.getBaseName() + " " + queryType.name().toLowerCase()
-                + (arguments.size() > 0 ? (" " + serializeArguments()) : "");
+        var list = new ObjectArrayList<String>();
+
+        list.add(queryType.name().toLowerCase());
+        list.addAll(super.serializeArgumentList());
+
+        return list;
     }
 
     @Environment(EnvironmentType.CLIENT)

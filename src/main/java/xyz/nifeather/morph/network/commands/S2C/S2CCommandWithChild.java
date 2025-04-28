@@ -7,7 +7,9 @@ import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.commands.S2C.set.AbstractS2CSetCommand;
 
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 public abstract class S2CCommandWithChild<T> extends AbstractS2CCommand<T>
@@ -17,7 +19,7 @@ public abstract class S2CCommandWithChild<T> extends AbstractS2CCommand<T>
         super(arguments);
     }
 
-    private final Map<String, Function<String, AbstractS2CSetCommand<?>>> nameToCmdMap = new Object2ObjectOpenHashMap<>();
+    private final Map<String, Function<String, AbstractS2CSetCommand<?>>> nameToCmdMap = new ConcurrentHashMap<>();
 
     protected S2CCommandWithChild<T> register(String baseName, Function<String, AbstractS2CSetCommand<?>> func)
     {
@@ -30,13 +32,13 @@ public abstract class S2CCommandWithChild<T> extends AbstractS2CCommand<T>
     @Override
     public final void onCommand(BasicServerHandler<?> handler)
     {
-        var rawArguments = serializeArguments();
+        var rawArguments = serializeArgumentList();
 
-        var arguments = rawArguments.split(" ", 2);
-        if (arguments.length < 1) return;
+        if (rawArguments.isEmpty()) return;
 
-        var subBaseName = arguments[0];
-        var subCmd = nameToCmdMap.getOrDefault(subBaseName, null).apply(arguments.length == 2 ? arguments[1] : "");
+        var subBaseName = arguments.getFirst(); // assume the first is String...
+        var subCmd = nameToCmdMap.getOrDefault(subBaseName, null)
+                .apply(arguments.size() >= 2 ? this.serializeArgumentSingle(arguments.get(1)) : "");
 
         if (subCmd != null)
         {
@@ -59,7 +61,7 @@ public abstract class S2CCommandWithChild<T> extends AbstractS2CCommand<T>
         return func == null ? null : func.apply(str.length == 2 ? str[1] : "");
     }
 
-    protected void onCommandUnknown(String rawArguments)
+    protected void onCommandUnknown(List<String> arguments)
     {
     }
 }

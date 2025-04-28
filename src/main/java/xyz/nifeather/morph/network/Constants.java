@@ -2,7 +2,7 @@ package xyz.nifeather.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.ANIMATION.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.WE_NOW_USE_PACKETBUF.protocolVersion;
 
     private static Boolean IsServer = null;
 
@@ -87,7 +87,12 @@ public class Constants
         /**
          * Animation command
          */
-        ANIMATION(12)
+        ANIMATION(12),
+
+        /**
+         * We now use (Friendly / Packet)ByteBuf methods to serialize commands into bytes.
+         */
+        WE_NOW_USE_PACKETBUF(13)
         ;
 
         public final int protocolVersion;
