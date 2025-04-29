@@ -60,13 +60,13 @@ public class S2CRequestCommand extends AbstractS2CCommand<String>
 
     public enum Type
     {
-        NewRequest(S2CCommandNames.RequestNew),
-        RequestSend(S2CCommandNames.RequestSend),
-        RequestExpired(S2CCommandNames.RequestExpire),
-        RequestExpiredOwner(S2CCommandNames.RequestExpireOwner),
+        NewRequest("new"),
+        RequestSend("send"),
+        RequestExpired("expire"),
+        RequestExpiredOwner("expire_owner"),
 
-        RequestAccepted(S2CCommandNames.RequestAccept),
-        RequestDenied(S2CCommandNames.RequestDenied),
+        RequestAccepted("request_accepted"),
+        RequestDenied("request_denied"),
         Unknown("unknown_type");
 
         public final String commandName;

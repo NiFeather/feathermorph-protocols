@@ -6,24 +6,23 @@ import xyz.nifeather.morph.network.commands.S2C.MapCommandHelper;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
 import java.util.Map;
 
 /**
  * Disguise UUID <-> Player Map Command
  */
-public class S2CSetRenderRevealCommand extends AbstractS2CCommand<String>
+public class S2CSyncAdminRevealCommand extends AbstractS2CCommand<String>
 {
     private final Map<Integer, String> uuidPlayerMap;
 
-    public S2CSetRenderRevealCommand(Map<Integer, String> uuidToPlayerMap)
+    public S2CSyncAdminRevealCommand(Map<Integer, String> uuidToPlayerMap)
     {
         this.uuidPlayerMap = uuidToPlayerMap;
     }
 
-    public static S2CSetRenderRevealCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static S2CSyncAdminRevealCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        return new S2CSetRenderRevealCommand(MapCommandHelper.parseMapIntegerString(Asserts.getStringOrThrow(arguments, "value")));
+        return new S2CSyncAdminRevealCommand(MapCommandHelper.parseMapIntegerString(Asserts.getStringOrThrow(arguments, "value")));
     }
 
     @Override
@@ -51,13 +50,13 @@ public class S2CSetRenderRevealCommand extends AbstractS2CCommand<String>
         return uuidPlayerMap;
     }
 
-    public static S2CSetRenderRevealCommand of(Map<Integer, String> idToPlayerMap)
+    public static S2CSyncAdminRevealCommand of(Map<Integer, String> idToPlayerMap)
     {
-        return new S2CSetRenderRevealCommand(idToPlayerMap);
+        return new S2CSyncAdminRevealCommand(idToPlayerMap);
     }
 
-    public static S2CSetRenderRevealCommand ofStr(String arg)
+    public static S2CSyncAdminRevealCommand ofStr(String arg)
     {
-        return new S2CSetRenderRevealCommand(MapCommandHelper.parseMapIntegerString(arg));
+        return new S2CSyncAdminRevealCommand(MapCommandHelper.parseMapIntegerString(arg));
     }
 }

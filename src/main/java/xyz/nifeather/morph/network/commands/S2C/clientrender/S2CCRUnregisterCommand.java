@@ -5,21 +5,20 @@ import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
 import java.util.Map;
 
-public class S2CRenderMapRemoveCommand extends AbstractS2CCommand<Integer>
+public class S2CCRUnregisterCommand extends AbstractS2CCommand<Integer>
 {
     private final int playerNetworkId;
 
-    public S2CRenderMapRemoveCommand(Integer playerNetworkId)
+    public S2CCRUnregisterCommand(Integer playerNetworkId)
     {
         this.playerNetworkId = playerNetworkId;
     }
 
-    public static S2CRenderMapRemoveCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static S2CCRUnregisterCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        return new S2CRenderMapRemoveCommand(Integer.parseInt(Asserts.getStringOrThrow(arguments, "id")));
+        return new S2CCRUnregisterCommand(Integer.parseInt(Asserts.getStringOrThrow(arguments, "id")));
     }
 
     @Override
@@ -54,14 +53,14 @@ public class S2CRenderMapRemoveCommand extends AbstractS2CCommand<Integer>
         return playerNetworkId;
     }
 
-    private static final S2CRenderMapRemoveCommand invalidPacket = new S2CRenderMapRemoveCommand(-1);
+    private static final S2CCRUnregisterCommand invalidPacket = new S2CCRUnregisterCommand(-1);
 
-    public static S2CRenderMapRemoveCommand of(Integer networkId)
+    public static S2CCRUnregisterCommand of(Integer networkId)
     {
-        return new S2CRenderMapRemoveCommand(networkId);
+        return new S2CCRUnregisterCommand(networkId);
     }
 
-    public static S2CRenderMapRemoveCommand of(String arg)
+    public static S2CCRUnregisterCommand of(String arg)
     {
         var argSplit = arg.split(" ");
 
@@ -76,6 +75,6 @@ public class S2CRenderMapRemoveCommand extends AbstractS2CCommand<Integer>
             return invalidPacket;
         }
 
-        return S2CRenderMapRemoveCommand.of(networkId);
+        return S2CCRUnregisterCommand.of(networkId);
     }
 }

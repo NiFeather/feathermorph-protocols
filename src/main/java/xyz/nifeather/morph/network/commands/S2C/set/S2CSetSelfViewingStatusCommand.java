@@ -6,10 +6,9 @@ import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
 import java.util.Map;
 
-public class S2CSetSelfViewingCommand extends AbstractS2CSetCommand<Boolean>
+public class S2CSetSelfViewingStatusCommand extends AbstractS2CSetCommand<Boolean>
 {
     private final boolean selfViewing;
 
@@ -18,14 +17,14 @@ public class S2CSetSelfViewingCommand extends AbstractS2CSetCommand<Boolean>
         return selfViewing;
     }
 
-    public S2CSetSelfViewingCommand(Boolean val)
+    public S2CSetSelfViewingStatusCommand(Boolean val)
     {
         this.selfViewing = val;
     }
 
-    public static S2CSetSelfViewingCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static S2CSetSelfViewingStatusCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        return new S2CSetSelfViewingCommand(Boolean.parseBoolean(Asserts.getStringOrThrow(arguments, "val")));
+        return new S2CSetSelfViewingStatusCommand(Boolean.parseBoolean(Asserts.getStringOrThrow(arguments, "val")));
     }
 
     @Override

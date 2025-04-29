@@ -2,10 +2,10 @@ package xyz.nifeather.morph.network;
 
 import xyz.nifeather.morph.network.commands.C2S.*;
 import xyz.nifeather.morph.network.commands.S2C.*;
-import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CClearRevealCommand;
-import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CPartialRevealCommand;
-import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CRemoveRevealCommand;
-import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CSetRenderRevealCommand;
+import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CClearAdminRevealCommand;
+import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CAddAdminRevealCommand;
+import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CRemoveAdminRevealCommand;
+import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CSyncAdminRevealCommand;
 import xyz.nifeather.morph.network.commands.S2C.clientrender.*;
 import xyz.nifeather.morph.network.commands.S2C.query.S2CQueryCommand;
 import xyz.nifeather.morph.network.commands.S2C.set.*;
@@ -43,7 +43,7 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetSelfViewIdentifierCommand(S2CSetSelfViewIdentifierCommand command);
     void onSetSkillCooldownCommand(S2CSetSkillCooldownCommand command);
     void onSetSneakingCommand(S2CSetSneakingCommand command);
-    void onSetSelfViewingCommand(S2CSetSelfViewingCommand command);
+    void onSetSelfViewingCommand(S2CSetSelfViewingStatusCommand command);
     void onSetModifyBoundingBox(S2CSetModifyBoundingBoxCommand command);
 
     void onSetRevealing(S2CSetMobRevealingCommand command);
@@ -52,20 +52,20 @@ public interface BasicServerHandler<TPlatformPlayer>
 
     //region MapCommands
 
-    void onMapCommand(S2CSetRenderRevealCommand command);
-    void onMapPartialCommand(S2CPartialRevealCommand command);
-    void onMapClearCommand(S2CClearRevealCommand command);
-    void onMapRemoveCommand(S2CRemoveRevealCommand command);
+    void onMapCommand(S2CSyncAdminRevealCommand command);
+    void onMapPartialCommand(S2CAddAdminRevealCommand command);
+    void onMapClearCommand(S2CClearAdminRevealCommand command);
+    void onMapRemoveCommand(S2CRemoveAdminRevealCommand command);
 
     //endregion MapCommands
 
     //region ClientRenderer
 
-    void onClientMapSyncCommand(S2CRenderMapSyncCommand command);
-    void onClientMapAddCommand(S2CRenderMapAddCommand command);
-    void onClientMapRemoveCommand(S2CRenderMapRemoveCommand command);
-    void onClientMapClearCommand(S2CRenderMapClearCommand command);
-    void onClientMapMetaNbtCommand(S2CRenderMapMetaCommand command);
+    void onClientMapSyncCommand(S2CCRSyncRegisterCommand command);
+    void onClientMapAddCommand(S2CCRRegisterCommand command);
+    void onClientMapRemoveCommand(S2CCRUnregisterCommand command);
+    void onClientMapClearCommand(S2CCRClearCommand command);
+    void onClientMapMetaNbtCommand(S2CCRSetMetaCommand command);
 
     //endregion ClientRenderer
 

@@ -4,10 +4,9 @@ import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 
-import java.util.List;
 import java.util.Map;
 
-public class S2CRenderMapClearCommand extends AbstractS2CCommand<String>
+public class S2CCRClearCommand extends AbstractS2CCommand<String>
 {
     @Override
     public String getBaseName()
@@ -15,9 +14,9 @@ public class S2CRenderMapClearCommand extends AbstractS2CCommand<String>
         return S2CCommandNames.CRClear;
     }
 
-    public static S2CRenderMapClearCommand fromArguments(Map<String, String> arguments)
+    public static S2CCRClearCommand fromArguments(Map<String, String> arguments)
     {
-        return new S2CRenderMapClearCommand();
+        return new S2CCRClearCommand();
     }
 
     @Override

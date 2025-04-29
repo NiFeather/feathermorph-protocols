@@ -6,22 +6,20 @@ import xyz.nifeather.morph.network.commands.S2C.MapCommandHelper;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
-public class S2CRenderMapSyncCommand extends AbstractS2CCommand<String>
+public class S2CCRSyncRegisterCommand extends AbstractS2CCommand<String>
 {
     private final Map<Integer, String> uuidPlayerMap;
 
-    public S2CRenderMapSyncCommand(Map<Integer, String> uuidToPlayerMap)
+    public S2CCRSyncRegisterCommand(Map<Integer, String> uuidToPlayerMap)
     {
         this.uuidPlayerMap = uuidToPlayerMap;
     }
 
-    public static S2CRenderMapSyncCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static S2CCRSyncRegisterCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        return new S2CRenderMapSyncCommand(MapCommandHelper.parseMapIntegerString(Asserts.getStringOrThrow(arguments, "value")));
+        return new S2CCRSyncRegisterCommand(MapCommandHelper.parseMapIntegerString(Asserts.getStringOrThrow(arguments, "value")));
     }
 
     @Override
@@ -35,7 +33,7 @@ public class S2CRenderMapSyncCommand extends AbstractS2CCommand<String>
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.CRMap;
+        return S2CCommandNames.CRSyncRender;
     }
 
     @Override
@@ -49,13 +47,13 @@ public class S2CRenderMapSyncCommand extends AbstractS2CCommand<String>
         return uuidPlayerMap;
     }
 
-    public static S2CRenderMapSyncCommand of(Map<Integer, String> idToPlayerMap)
+    public static S2CCRSyncRegisterCommand of(Map<Integer, String> idToPlayerMap)
     {
-        return new S2CRenderMapSyncCommand(idToPlayerMap);
+        return new S2CCRSyncRegisterCommand(idToPlayerMap);
     }
 
-    public static S2CRenderMapSyncCommand ofStr(String arg)
+    public static S2CCRSyncRegisterCommand ofStr(String arg)
     {
-        return new S2CRenderMapSyncCommand(MapCommandHelper.parseMapIntegerString(arg));
+        return new S2CCRSyncRegisterCommand(MapCommandHelper.parseMapIntegerString(arg));
     }
 }

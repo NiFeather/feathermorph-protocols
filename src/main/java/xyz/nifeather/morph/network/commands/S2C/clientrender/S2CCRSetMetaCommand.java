@@ -5,21 +5,20 @@ import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
 import java.util.Map;
 
-public class S2CRenderMapMetaCommand extends AbstractS2CCommand<S2CRenderMeta>
+public class S2CCRSetMetaCommand extends AbstractS2CCommand<S2CRenderMeta>
 {
     public final S2CRenderMeta renderMeta;
 
-    public S2CRenderMapMetaCommand(S2CRenderMeta meta)
+    public S2CCRSetMetaCommand(S2CRenderMeta meta)
     {
         this.renderMeta = meta;
     }
 
-    public static S2CRenderMapMetaCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static S2CCRSetMetaCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        return new S2CRenderMapMetaCommand(S2CRenderMeta.fromString(Asserts.getStringOrThrow(arguments, "rendermeta")));
+        return new S2CCRSetMetaCommand(S2CRenderMeta.fromString(Asserts.getStringOrThrow(arguments, "rendermeta")));
     }
 
     @Override
@@ -42,10 +41,10 @@ public class S2CRenderMapMetaCommand extends AbstractS2CCommand<S2CRenderMeta>
         );
     }
 
-    public static S2CRenderMapMetaCommand fromStr(String arg)
+    public static S2CCRSetMetaCommand fromStr(String arg)
     {
         var meta = S2CRenderMeta.fromString(arg);
-        return new S2CRenderMapMetaCommand(meta);
+        return new S2CCRSetMetaCommand(meta);
     }
 }
 

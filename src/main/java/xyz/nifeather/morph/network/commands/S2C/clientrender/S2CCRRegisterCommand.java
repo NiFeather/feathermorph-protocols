@@ -5,23 +5,22 @@ import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
 import java.util.Map;
 
-public class S2CRenderMapAddCommand extends AbstractS2CCommand<String>
+public class S2CCRRegisterCommand extends AbstractS2CCommand<String>
 {
     private int networkId;
     private String mobId;
 
-    public S2CRenderMapAddCommand(Integer playerNetworkId, String mobId)
+    public S2CCRRegisterCommand(Integer playerNetworkId, String mobId)
     {
         this.networkId = playerNetworkId;
         this.mobId = mobId;
     }
 
-    public static S2CRenderMapAddCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static S2CCRRegisterCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        return new S2CRenderMapAddCommand(
+        return new S2CCRRegisterCommand(
                 Integer.parseInt(Asserts.getStringOrThrow(arguments, "player_id")),
                 Asserts.getStringOrThrow(arguments, "mob_id")
         );
@@ -67,14 +66,14 @@ public class S2CRenderMapAddCommand extends AbstractS2CCommand<String>
         return mobId;
     }
 
-    private static final S2CRenderMapAddCommand invalidPacket = new S2CRenderMapAddCommand(-1, null);
+    private static final S2CCRRegisterCommand invalidPacket = new S2CCRRegisterCommand(-1, null);
 
-    public static S2CRenderMapAddCommand of(Integer networkId, String mobId)
+    public static S2CCRRegisterCommand of(Integer networkId, String mobId)
     {
-        return new S2CRenderMapAddCommand(networkId, mobId);
+        return new S2CCRRegisterCommand(networkId, mobId);
     }
 
-    public static S2CRenderMapAddCommand of(String arg)
+    public static S2CCRRegisterCommand of(String arg)
     {
         var argSplit = arg.split(" ");
 
@@ -92,6 +91,6 @@ public class S2CRenderMapAddCommand extends AbstractS2CCommand<String>
             return invalidPacket;
         }
 
-        return S2CRenderMapAddCommand.of(networkId, argSplit[1]);
+        return S2CCRRegisterCommand.of(networkId, argSplit[1]);
     }
 }
