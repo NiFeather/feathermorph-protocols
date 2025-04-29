@@ -7,6 +7,7 @@ import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 
 import java.util.function.Function;
 
+@Deprecated
 public class CommandRegistries
 {
     private final Object2ObjectArrayMap<String, Function<String, AbstractC2SCommand<?>>> c2sCmds = new Object2ObjectArrayMap<>();

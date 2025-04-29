@@ -7,18 +7,14 @@ import java.util.List;
 
 public class S2CSetAvailableAnimationsCommand extends AbstractS2CSetCommand<String>
 {
-    public S2CSetAvailableAnimationsCommand()
-    {
-    }
-
     public S2CSetAvailableAnimationsCommand(List<String> ids)
     {
         super(ids.toArray(new String[]{}));
     }
 
-    public S2CSetAvailableAnimationsCommand(String... ids)
+    public static S2CSetAvailableAnimationsCommand fromArguments(List<String> arguments)
     {
-        super(ids);
+        return new S2CSetAvailableAnimationsCommand(arguments);
     }
 
     @Override
@@ -36,10 +32,5 @@ public class S2CSetAvailableAnimationsCommand extends AbstractS2CSetCommand<Stri
     public void onCommand(BasicServerHandler<?> handler)
     {
         handler.onValidAnimationsCommand(this);
-    }
-
-    public static S2CSetAvailableAnimationsCommand fromString(String arg)
-    {
-        return new S2CSetAvailableAnimationsCommand(arg.split(" "));
     }
 }

@@ -7,15 +7,15 @@ public enum QueryType
     REMOVE,
     SET;
 
-    public static QueryType tryValueOf(String str)
+    public static QueryType tryValueOf(String str) throws RuntimeException
     {
         try
         {
-            return QueryType.valueOf(str);
+            return QueryType.valueOf(str.toUpperCase());
         }
         catch (Throwable t)
         {
-            return UNKNOWN;
+            throw new RuntimeException("Unknown QueryType for input string '%s'".formatted(str));
         }
     }
 }

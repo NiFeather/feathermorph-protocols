@@ -2,7 +2,7 @@ package xyz.nifeather.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.WE_NOW_USE_PACKETBUF.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.WE_NOW_USE_JSON.protocolVersion;
 
     private static Boolean IsServer = null;
 
@@ -92,7 +92,12 @@ public class Constants
         /**
          * We now use (Friendly / Packet)ByteBuf methods to serialize commands into bytes.
          */
-        WE_NOW_USE_PACKETBUF(13)
+        WE_NOW_USE_PACKETBUF(13),
+
+        /**
+         * We now use Gson to send commands!
+         */
+        WE_NOW_USE_JSON(14)
         ;
 
         public final int protocolVersion;

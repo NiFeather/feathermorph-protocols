@@ -2,8 +2,11 @@ package xyz.nifeather.morph.network;
 
 import xyz.nifeather.morph.network.commands.C2S.*;
 import xyz.nifeather.morph.network.commands.S2C.*;
+import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CClearRevealCommand;
+import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CPartialRevealCommand;
+import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CRemoveRevealCommand;
+import xyz.nifeather.morph.network.commands.S2C.admin.reveal.S2CSetRenderRevealCommand;
 import xyz.nifeather.morph.network.commands.S2C.clientrender.*;
-import xyz.nifeather.morph.network.commands.S2C.map.*;
 import xyz.nifeather.morph.network.commands.S2C.query.S2CQueryCommand;
 import xyz.nifeather.morph.network.commands.S2C.set.*;
 
@@ -42,17 +45,21 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetSneakingCommand(S2CSetSneakingCommand command);
     void onSetSelfViewingCommand(S2CSetSelfViewingCommand command);
     void onSetModifyBoundingBox(S2CSetModifyBoundingBoxCommand command);
+
+    @SuppressWarnings("removal")
+    @Deprecated(forRemoval = true)
     void onSetReach(S2CSetReachCommand command);
+
     void onSetRevealing(S2CSetRevealingCommand command);
 
     void onExchangeRequestReceive(S2CRequestCommand command);
 
     //region MapCommands
 
-    void onMapCommand(S2CMapCommand command);
-    void onMapPartialCommand(S2CPartialMapCommand command);
-    void onMapClearCommand(S2CMapClearCommand command);
-    void onMapRemoveCommand(S2CMapRemoveCommand command);
+    void onMapCommand(S2CSetRenderRevealCommand command);
+    void onMapPartialCommand(S2CPartialRevealCommand command);
+    void onMapClearCommand(S2CClearRevealCommand command);
+    void onMapRemoveCommand(S2CRemoveRevealCommand command);
 
     //endregion MapCommands
 

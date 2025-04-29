@@ -1,26 +1,35 @@
-package xyz.nifeather.morph.network.commands.S2C.map;
+package xyz.nifeather.morph.network.commands.S2C.admin.reveal;
 
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
+import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Disguise UUID <-> Player Map Command
  */
-public class S2CPartialMapCommand extends AbstractS2CCommand<String>
+public class S2CPartialRevealCommand extends AbstractS2CCommand<String>
 {
-    public S2CPartialMapCommand(Map<Integer, String> uuidToPlayerMap)
+    public S2CPartialRevealCommand(Map<Integer, String> uuidToPlayerMap)
     {
         super(gson().toJson(uuidToPlayerMap));
+    }
+
+    public static S2CPartialRevealCommand fromArguments(List<String> arguments) throws RuntimeException
+    {
+        Asserts.assertArgumentCountAtLeast(arguments, S2CPartialRevealCommand.class, 1);
+
+        return ofStr(arguments.getFirst());
     }
 
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.MapPartial;
+        return S2CCommandNames.AddReveal;
     }
 
     @Override
@@ -56,14 +65,14 @@ public class S2CPartialMapCommand extends AbstractS2CCommand<String>
         return map;
     }
 
-    public static S2CPartialMapCommand of(Map<Integer, String> uuidToPlayerMap)
+    public static S2CPartialRevealCommand of(Map<Integer, String> uuidToPlayerMap)
     {
-        return new S2CPartialMapCommand(uuidToPlayerMap);
+        return new S2CPartialRevealCommand(uuidToPlayerMap);
     }
 
-    public static S2CPartialMapCommand ofStr(String arg)
+    public static S2CPartialRevealCommand ofStr(String arg)
     {
-        if (arg.equals(defaultMapStr)) return new S2CPartialMapCommand(new HashMap<>());
+        if (arg.equals(defaultMapStr)) return new S2CPartialRevealCommand(new HashMap<>());
         var mapConv = gson().fromJson(arg, HashMap.class);
 
         var map = new HashMap<Integer, String>();
@@ -81,6 +90,6 @@ public class S2CPartialMapCommand extends AbstractS2CCommand<String>
             }
         });
 
-        return new S2CPartialMapCommand(map);
+        return new S2CPartialRevealCommand(map);
     }
 }

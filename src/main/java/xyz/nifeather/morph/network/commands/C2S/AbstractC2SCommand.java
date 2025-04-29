@@ -11,6 +11,7 @@ import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class AbstractC2SCommand<T>
 {
@@ -56,6 +57,11 @@ public abstract class AbstractC2SCommand<T>
         return (TPlayer) owner;
     }
 
+    /**
+     * @deprecated Use Gson instead.
+     * @return
+     */
+    @Deprecated(forRemoval = true)
     public String buildCommand()
     {
         return (getBaseName() + " " + serializeArguments()).trim();
@@ -63,9 +69,23 @@ public abstract class AbstractC2SCommand<T>
 
     //region Utilities
 
+    protected String serializeArgumentSingle(T arg)
+    {
+        return arg.toString();
+    }
+
+    public List<String> serializeArgumentList()
+    {
+        return arguments.stream()
+                .map(this::serializeArgumentSingle)
+                .collect(Collectors.toList());
+    }
+
+    @Deprecated(forRemoval = true)
     public String serializeArguments()
     {
-        if (arguments.size() == 0) return "";
+        if (arguments.isEmpty())
+            return "";
 
         var builder = new StringBuilder();
         for (T argument : arguments)

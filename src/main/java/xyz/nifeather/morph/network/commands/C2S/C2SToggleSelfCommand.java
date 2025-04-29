@@ -3,6 +3,9 @@ package xyz.nifeather.morph.network.commands.C2S;
 import xyz.nifeather.morph.network.BasicClientHandler;
 import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
+import xyz.nifeather.morph.network.utils.Asserts;
+
+import java.util.List;
 
 public class C2SToggleSelfCommand extends AbstractC2SCommand<C2SToggleSelfCommand.SelfViewMode>
 {
@@ -16,6 +19,11 @@ public class C2SToggleSelfCommand extends AbstractC2SCommand<C2SToggleSelfComman
         return getArgumentAt(0);
     }
 
+    public static C2SToggleSelfCommand fromArguments(List<String> arguments) throws RuntimeException
+    {
+        Asserts.assertArgumentCountAtLeast(arguments, C2SToggleSelfCommand.class, 1);
+        return new C2SToggleSelfCommand(SelfViewMode.fromString(arguments.getFirst()));
+    }
 
     @Override
     public String getBaseName()
@@ -58,14 +66,14 @@ public class C2SToggleSelfCommand extends AbstractC2SCommand<C2SToggleSelfComman
         {
             return value ? ON : OFF;
         }
-        public static SelfViewMode fromString(String str)
+        public static SelfViewMode fromString(String str) throws RuntimeException
         {
             if (str.equalsIgnoreCase("true")) return ON;
             else if (str.equalsIgnoreCase("false")) return OFF;
             else if (str.equalsIgnoreCase("client true")) return CLIENT_ON;
             else if (str.equalsIgnoreCase("client false")) return CLIENT_OFF;
 
-            return OFF;
+            throw new RuntimeException("No matched SelfViewMode for input '%s'".formatted(str));
         }
 
         SelfViewMode(String networkName)

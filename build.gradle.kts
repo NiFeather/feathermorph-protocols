@@ -3,8 +3,8 @@ plugins {
     `maven-publish`
 }
 
-group = "com.github.XiaMoZhiShi"
-version = "1.1.5"
+group = "com.github.NiFeather"
+version = "2.0.0"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {

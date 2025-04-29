@@ -4,18 +4,25 @@ import xyz.nifeather.morph.network.BasicClientHandler;
 import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 
-public class C2SInitialCommand extends AbstractC2SCommand<String>
+import java.util.List;
+
+public class C2SActivateSkillCommand extends AbstractC2SCommand<String>
 {
     @Override
     public String getBaseName()
     {
-        return C2SCommandNames.Initial;
+        return C2SCommandNames.Skill;
+    }
+
+    public static C2SActivateSkillCommand fromArguments(List<String> arguments)
+    {
+        return new C2SActivateSkillCommand();
     }
 
     @Environment(EnvironmentType.SERVER)
     @Override
     public void onCommand(BasicClientHandler<?> listener)
     {
-        listener.onInitialCommand(this);
+        listener.onSkillCommand(this);
     }
 }

@@ -32,10 +32,22 @@ public class S2CCommandNames
     public static final String SetAvailableAnimations = "avail_anim";
     public static final String SetAnimationDisplayName = "anim_display";
 
+    @Deprecated(forRemoval = true)
     public static final String Map = "map";
+
+    @Deprecated(forRemoval = true)
     public static final String MapPartial = "mapp";
+
+    @Deprecated(forRemoval = true)
     public static final String MapClear = "mapc";
+
+    @Deprecated(forRemoval = true)
     public static final String MapRemove = "mapr";
+
+    public static final String SetReveal = "map";
+    public static final String AddReveal = "mapp";
+    public static final String RemoveReveal = "mapr";
+    public static final String ClearReveal = "mapc";
 
     public static final String Animation = "animation";
 
@@ -45,13 +57,9 @@ public class S2CCommandNames
     public static final String CRClear = "crc";
     public static final String CRMeta = "crmeta";
 
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static final String SetNbt = SetSNbt;
 
-
-    /**
-     * 已废弃
-     */
-    @Deprecated
+    @Deprecated(forRemoval = true)
     public static final String SetSpider = "spider";
 }

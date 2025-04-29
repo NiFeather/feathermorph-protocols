@@ -3,15 +3,29 @@ package xyz.nifeather.morph.network.commands.S2C;
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
+import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class S2CRequestCommand extends AbstractS2CCommand<String>
 {
-    @Environment(EnvironmentType.CLIENT)
-    public S2CRequestCommand(String rawArgs)
+    public static S2CRequestCommand fromArguments(List<String> arguments) throws RuntimeException
     {
-        super(rawArgs.split(" "));
+        Asserts.assertArgumentCountAtLeast(arguments, S2CRequestCommand.class, 2);
+
+        var typeStr = arguments.getFirst();
+
+        var type = Arrays.stream(Type.values()).filter(t -> t.commandName.equalsIgnoreCase(typeStr))
+                .findFirst().orElse(Type.Unknown);
+
+        var source = arguments.get(1);
+
+        return new S2CRequestCommand(type, source);
+    }
+
+    private S2CRequestCommand()
+    {
     }
 
     public S2CRequestCommand(Type requestType, String source)
@@ -36,13 +50,6 @@ public class S2CRequestCommand extends AbstractS2CCommand<String>
     public void onCommand(BasicServerHandler<?> handler)
     {
         var typeStr = getArgumentAt(0, "?");
-
-        System.out.println("typeStr: " + typeStr);
-
-        this.type = Arrays.stream(Type.values()).filter(t -> t.commandName.equalsIgnoreCase(typeStr))
-                    .findFirst().orElse(Type.Unknown);
-
-        this.sourcePlayer = getArgumentAt(1, "Unknown source");
 
         handler.onExchangeRequestReceive(this);
     }

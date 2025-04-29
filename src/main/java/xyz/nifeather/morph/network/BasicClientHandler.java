@@ -70,10 +70,10 @@ public interface BasicClientHandler<TPlatformPlayer>
 
     //region Commands
 
-    void onInitialCommand(C2SInitialCommand command);
+    void onInitialCommand(C2SRequestInitialCommand command);
     void onMorphCommand(C2SMorphCommand command);
-    void onOptionCommand(C2SOptionCommand command);
-    void onSkillCommand(C2SSkillCommand command);
+    void onOptionCommand(C2SSetSingleOptionCommand command);
+    void onSkillCommand(C2SActivateSkillCommand command);
     void onToggleSelfCommand(C2SToggleSelfCommand command);
     void onUnmorphCommand(C2SUnmorphCommand command);
     void onRequestCommand(C2SRequestCommand command);

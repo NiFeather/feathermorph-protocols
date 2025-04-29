@@ -1,23 +1,27 @@
-package xyz.nifeather.morph.network.commands.S2C.map;
+package xyz.nifeather.morph.network.commands.S2C.admin.reveal;
 
 import xyz.nifeather.morph.network.BasicServerHandler;
-import xyz.nifeather.morph.network.commands.C2S.AbstractC2SCommand;
 import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 
-import java.util.Map;
+import java.util.List;
 
-public class S2CMapClearCommand extends AbstractS2CCommand<String>
+public class S2CClearRevealCommand extends AbstractS2CCommand<String>
 {
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.MapClear;
+        return S2CCommandNames.ClearReveal;
     }
 
-    public S2CMapClearCommand()
+    public static S2CClearRevealCommand fromArguments(List<String> arguments)
     {
-        super(S2CCommandNames.MapClear);
+        return new S2CClearRevealCommand();
+    }
+
+    public S2CClearRevealCommand()
+    {
+        super();
     }
 
     @Override

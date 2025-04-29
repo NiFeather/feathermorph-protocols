@@ -22,15 +22,4 @@ public abstract class AbstractS2CSetCommand<T> extends AbstractS2CCommand<T>
     {
         return arguments;
     }
-
-    @Override
-    public List<String> buildCommand()
-    {
-        var list = new ObjectArrayList<String>();
-
-        list.add(S2CCommandNames.BaseSet);
-        list.addAll(super.buildCommand());
-
-        return list;
-    }
 }

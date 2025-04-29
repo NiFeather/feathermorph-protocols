@@ -7,22 +7,21 @@ import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
+import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
 
 public class S2CQueryCommand extends AbstractS2CCommand<String>
 {
-    @Nullable
-    public static S2CQueryCommand from(String rawArg)
+    public static S2CQueryCommand fromArguments(List<String> arguments) throws RuntimeException
     {
-        var spilt = rawArg.split(" ", 2);
-        if (spilt.length < 1) return null;
+        Asserts.assertArgumentCountAtLeast(arguments, S2CQueryCommand.class, 2);
 
-        var type = QueryType.tryValueOf(spilt[0].toUpperCase());
-        return new S2CQueryCommand(type, spilt.length == 2 ? spilt[1].split(" ") : new String[]{});
+        var type = QueryType.tryValueOf(arguments.remove(0));
+        return new S2CQueryCommand(type, arguments);
     }
 
-    public S2CQueryCommand(QueryType queryType, String... diff)
+    public S2CQueryCommand(QueryType queryType, List<String> diff)
     {
         super(diff);
 

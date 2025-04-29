@@ -6,6 +6,7 @@ import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import it.unimi.dsi.fastutil.objects.ObjectLists;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.Unmodifiable;
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.Constants;
 import xyz.nifeather.morph.network.annotations.Environment;
@@ -18,22 +19,31 @@ import java.util.stream.Collectors;
 
 public abstract class AbstractS2CCommand<T>
 {
-    public AbstractS2CCommand()
+    protected AbstractS2CCommand()
     {
         arguments = new ArrayList<>();
     }
 
-    public AbstractS2CCommand(@Nullable T argument)
+    protected AbstractS2CCommand(@Nullable T argument)
     {
         this.arguments = toList(argument);
     }
 
-    public AbstractS2CCommand(@Nullable T[] arguments)
+    protected AbstractS2CCommand(@Nullable T[] arguments)
     {
         this.arguments = toList(arguments);
     }
 
+    protected AbstractS2CCommand(@Nullable List<T> arguments)
+    {
+        if (arguments != null)
+            this.arguments = new ObjectArrayList<>(arguments);
+        else
+            this.arguments = List.of();
+    }
+
     @NotNull
+    @Unmodifiable
     protected List<T> arguments;
 
     @SafeVarargs
@@ -50,16 +60,6 @@ public abstract class AbstractS2CCommand<T>
     @Environment(EnvironmentType.CLIENT)
     public abstract void onCommand(BasicServerHandler<?> handler);
 
-    public List<String> buildCommand()
-    {
-        var list = new ObjectArrayList<String>();
-
-        list.add(this.getBaseName());
-        list.addAll(this.serializeArgumentList());
-
-        return list;
-    }
-
     //region Utilities
 
     private static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
@@ -69,9 +69,9 @@ public abstract class AbstractS2CCommand<T>
         return gson;
     }
 
-    protected String serializeArgumentSingle(T arg)
+    protected String serializeArgumentSingle(@Nullable T arg)
     {
-        return arg.toString();
+        return arg == null ? "null" : arg.toString();
     }
 
     public List<String> serializeArgumentList()

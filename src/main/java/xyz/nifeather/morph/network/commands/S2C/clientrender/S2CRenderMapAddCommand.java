@@ -3,12 +3,22 @@ package xyz.nifeather.morph.network.commands.S2C.clientrender;
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
+import xyz.nifeather.morph.network.utils.Asserts;
+
+import java.util.List;
 
 public class S2CRenderMapAddCommand extends AbstractS2CCommand<String>
 {
     public S2CRenderMapAddCommand(Integer playerNetworkId, String mobId)
     {
         super(new String[]{ playerNetworkId.toString(), mobId });
+    }
+
+    public static S2CRenderMapAddCommand fromArguments(List<String> arguments) throws RuntimeException
+    {
+        Asserts.assertArgumentCountAtLeast(arguments, S2CRenderMapAddCommand.class, 2);
+
+        return new S2CRenderMapAddCommand(Integer.parseInt(arguments.getFirst()), arguments.get(1));
     }
 
     @Override

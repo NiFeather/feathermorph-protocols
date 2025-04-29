@@ -5,6 +5,7 @@ import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 
+@Deprecated(forRemoval = true)
 public class S2CSetReachCommand extends AbstractS2CSetCommand<Integer>
 {
     public S2CSetReachCommand(int reach)
@@ -23,6 +24,7 @@ public class S2CSetReachCommand extends AbstractS2CSetCommand<Integer>
         return getArgumentAt(0, -1);
     }
 
+    @SuppressWarnings("removal")
     @Environment(EnvironmentType.CLIENT)
     @Override
     public void onCommand(BasicServerHandler<?> handler)
