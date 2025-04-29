@@ -1,24 +1,29 @@
 package xyz.nifeather.morph.network.commands.S2C.set;
 
+import org.jetbrains.annotations.NotNull;
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.commands.S2C.S2CRequestCommand;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CSetAnimationDisplayNameCommand extends AbstractS2CSetCommand<String>
 {
-    public S2CSetAnimationDisplayNameCommand(String translateId)
+    @NotNull
+    private final String translateId;
+
+    public S2CSetAnimationDisplayNameCommand(@NotNull String translateId)
     {
-        super(translateId);
+        this.translateId = translateId;
     }
 
-    public static S2CSetAnimationDisplayNameCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetAnimationDisplayNameCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetAnimationDisplayNameCommand.class, 1);
+        var id = Asserts.getStringOrThrow(arguments, "translate");
 
-        return new S2CSetAnimationDisplayNameCommand(arguments.getFirst());
+        return new S2CSetAnimationDisplayNameCommand(id);
     }
 
     @Override
@@ -29,12 +34,18 @@ public class S2CSetAnimationDisplayNameCommand extends AbstractS2CSetCommand<Str
 
     public String getDisplayIdentifier()
     {
-        return getArgumentAt(0, "nil");
+        return translateId;
     }
 
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {
         handler.onSetAnimationDisplayCommand(this);
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("translate", translateId);
     }
 }

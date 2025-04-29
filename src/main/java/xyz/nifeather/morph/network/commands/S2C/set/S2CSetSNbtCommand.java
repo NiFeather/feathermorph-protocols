@@ -7,24 +7,31 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CSetSNbtCommand extends AbstractS2CSetCommand<String>
 {
+    private final String tag;
+
     public S2CSetSNbtCommand(String tag)
     {
-        super(tag);
+        this.tag = tag;
     }
 
     public String getSNbt()
     {
-        return getArgumentAt(0, "{}");
+        return tag;
     }
 
-    public static S2CSetSNbtCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetSNbtCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetSNbtCommand.class, 1);
+        return new S2CSetSNbtCommand(Asserts.getStringOrThrow(arguments, "tag"));
+    }
 
-        return new S2CSetSNbtCommand(arguments.getFirst());
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("tag", tag);
     }
 
     @Override

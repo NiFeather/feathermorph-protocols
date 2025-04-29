@@ -7,19 +7,26 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CSetSkillCooldownCommand extends AbstractS2CSetCommand<Long>
 {
+    public final long val;
+
     public S2CSetSkillCooldownCommand(long value)
     {
-        super(value);
+        this.val = value;
     }
 
-    public static S2CSetSkillCooldownCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetSkillCooldownCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetSkillCooldownCommand.class, 1);
+        return new S2CSetSkillCooldownCommand(Long.parseLong(Asserts.getStringOrThrow(arguments, "val")));
+    }
 
-        return new S2CSetSkillCooldownCommand(Long.parseLong(arguments.getFirst()));
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("val", Long.toString(val));
     }
 
     @Override

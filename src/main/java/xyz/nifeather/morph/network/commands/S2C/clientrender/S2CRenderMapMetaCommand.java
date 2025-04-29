@@ -6,19 +6,20 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CRenderMapMetaCommand extends AbstractS2CCommand<S2CRenderMeta>
 {
+    public final S2CRenderMeta renderMeta;
+
     public S2CRenderMapMetaCommand(S2CRenderMeta meta)
     {
-        super(meta);
+        this.renderMeta = meta;
     }
 
-    public static S2CRenderMapMetaCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CRenderMapMetaCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CRenderMapMetaCommand.class, 1);
-
-        return new S2CRenderMapMetaCommand(S2CRenderMeta.fromString(arguments.getFirst()));
+        return new S2CRenderMapMetaCommand(S2CRenderMeta.fromString(Asserts.getStringOrThrow(arguments, "rendermeta")));
     }
 
     @Override
@@ -31,6 +32,14 @@ public class S2CRenderMapMetaCommand extends AbstractS2CCommand<S2CRenderMeta>
     public void onCommand(BasicServerHandler<?> listener)
     {
         listener.onClientMapMetaNbtCommand(this);
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of(
+                "rendermeta", renderMeta.toString()
+        );
     }
 
     public static S2CRenderMapMetaCommand fromStr(String arg)

@@ -7,19 +7,31 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CSetSelfViewingCommand extends AbstractS2CSetCommand<Boolean>
 {
-    public S2CSetSelfViewingCommand(Boolean val)
+    private final boolean selfViewing;
+
+    public boolean selfViewing()
     {
-        super(val);
+        return selfViewing;
     }
 
-    public static S2CSetSelfViewingCommand fromArguments(List<String> arguments) throws RuntimeException
+    public S2CSetSelfViewingCommand(Boolean val)
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetSelfViewingCommand.class, 1);
+        this.selfViewing = val;
+    }
 
-        return new S2CSetSelfViewingCommand(Boolean.parseBoolean(arguments.getFirst()));
+    public static S2CSetSelfViewingCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    {
+        return new S2CSetSelfViewingCommand(Boolean.parseBoolean(Asserts.getStringOrThrow(arguments, "val")));
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("val", selfViewing + "");
     }
 
     @Override

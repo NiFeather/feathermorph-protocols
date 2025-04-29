@@ -3,19 +3,26 @@ package xyz.nifeather.morph.network.commands.S2C;
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
+import java.util.Map;
 
 public class S2CAnimationCommand extends AbstractS2CCommand<String>
 {
-    public S2CAnimationCommand(String animation)
+    @Override
+    public Map<String, String> generateArgumentMap()
     {
-        super(animation);
+        return Map.of("anim_identifier", animationIdentifier);
     }
 
-    public static S2CAnimationCommand fromArguments(List<String> arguments) throws RuntimeException
+    private final String animationIdentifier;
+
+    public S2CAnimationCommand(String animationIdentifier)
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CAnimationCommand.class, 1);
-        return new S2CAnimationCommand(arguments.getFirst());
+        this.animationIdentifier = animationIdentifier;
+    }
+
+    public static S2CAnimationCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    {
+        return new S2CAnimationCommand(Asserts.getStringOrThrow(arguments, "anim_identifier"));
     }
 
     @Override
@@ -26,7 +33,7 @@ public class S2CAnimationCommand extends AbstractS2CCommand<String>
 
     public String getAnimId()
     {
-        return getArgumentAt(0, "nil");
+        return animationIdentifier;
     }
 
     @Override

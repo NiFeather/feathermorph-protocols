@@ -27,10 +27,13 @@ public class S2CCommandNames
     public static final String SetSneaking = "sneaking";
     public static final String SetSelfViewing = "toggleself";
     public static final String SetModifyBoundingBox = "boundingbox";
-    public static final String SetReach = "reach";
+
     public static final String SetRevealing = "reveal";
     public static final String SetAvailableAnimations = "avail_anim";
     public static final String SetAnimationDisplayName = "anim_display";
+
+    @Deprecated(forRemoval = true)
+    public static final String SetReach = "reach";
 
     @Deprecated(forRemoval = true)
     public static final String Map = "map";

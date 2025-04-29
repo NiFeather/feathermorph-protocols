@@ -6,21 +6,30 @@ import xyz.nifeather.morph.network.commands.S2C.MapCommandHelper;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class S2CRenderMapSyncCommand extends AbstractS2CCommand<String>
 {
+    private final Map<Integer, String> uuidPlayerMap;
+
     public S2CRenderMapSyncCommand(Map<Integer, String> uuidToPlayerMap)
     {
-        super(gson().toJson(uuidToPlayerMap));
+        this.uuidPlayerMap = uuidToPlayerMap;
     }
 
-    public static S2CRenderMapSyncCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CRenderMapSyncCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CRenderMapSyncCommand.class, 1);
+        return new S2CRenderMapSyncCommand(MapCommandHelper.parseMapIntegerString(Asserts.getStringOrThrow(arguments, "value")));
+    }
 
-        return new S2CRenderMapSyncCommand(MapCommandHelper.parseMapIntegerString(arguments.getFirst()));
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of(
+                "value", gson().toJson(uuidPlayerMap)
+        );
     }
 
     @Override
@@ -37,7 +46,7 @@ public class S2CRenderMapSyncCommand extends AbstractS2CCommand<String>
 
     public Map<Integer, String> getMap()
     {
-        return MapCommandHelper.parseMapIntegerString(this);
+        return uuidPlayerMap;
     }
 
     public static S2CRenderMapSyncCommand of(Map<Integer, String> idToPlayerMap)

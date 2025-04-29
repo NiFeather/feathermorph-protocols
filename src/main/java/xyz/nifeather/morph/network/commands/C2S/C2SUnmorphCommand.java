@@ -5,6 +5,7 @@ import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 
 import java.util.List;
+import java.util.Map;
 
 public class C2SUnmorphCommand extends AbstractC2SCommand<String>
 {
@@ -14,9 +15,15 @@ public class C2SUnmorphCommand extends AbstractC2SCommand<String>
         return C2SCommandNames.Unmorph;
     }
 
-    public static C2SUnmorphCommand fromArguments(List<String> arguments)
+    public static C2SUnmorphCommand fromArguments(Map<String, String> arguments)
     {
         return new C2SUnmorphCommand();
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of();
     }
 
     @Environment(EnvironmentType.SERVER)

@@ -5,12 +5,19 @@ import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 
 import java.util.List;
+import java.util.Map;
 
 public class C2SRequestInitialCommand extends AbstractC2SCommand<String>
 {
-    public static C2SRequestInitialCommand fromArguments(List<String> arguments)
+    public static C2SRequestInitialCommand fromArguments(Map<String, String> arguments)
     {
         return new C2SRequestInitialCommand();
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of();
     }
 
     @Override

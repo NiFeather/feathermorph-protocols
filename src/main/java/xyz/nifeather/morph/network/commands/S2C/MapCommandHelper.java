@@ -12,11 +12,6 @@ public class MapCommandHelper
 
     private static final Gson gson = new GsonBuilder().disableHtmlEscaping().create();
 
-    public static Map<Integer, String> parseMapIntegerString(AbstractS2CCommand<String> command)
-    {
-        return parseMapIntegerString(command.getArgumentAt(0, defaultMapStr));
-    }
-
     public static Map<Integer, String> parseMapIntegerString(String arg)
     {
         if (arg.equals(defaultMapStr)) return new HashMap<>();

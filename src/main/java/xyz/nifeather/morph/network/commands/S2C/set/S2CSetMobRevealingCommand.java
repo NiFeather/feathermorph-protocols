@@ -5,23 +5,30 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
-public class S2CSetRevealingCommand extends AbstractS2CSetCommand<Float>
+public class S2CSetMobRevealingCommand extends AbstractS2CSetCommand<Float>
 {
-    public S2CSetRevealingCommand(float val)
+    private final float val;
+
+    public S2CSetMobRevealingCommand(float val)
     {
-        super(val);
+        this.val = val;
     }
 
-    public static S2CSetRevealingCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetMobRevealingCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetRevealingCommand.class, 1);
-
-        float value = Float.parseFloat(arguments.getFirst());
+        float value = Float.parseFloat(Asserts.getStringOrThrow(arguments, "val"));
         if (Float.isInfinite(value) || Float.isNaN(value))
             throw new RuntimeException("The value for S2CSetRevealingCommand should be finite");
 
-        return new S2CSetRevealingCommand(value);
+        return new S2CSetMobRevealingCommand(value);
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("val", Float.toString(val));
     }
 
     @Override
@@ -38,6 +45,6 @@ public class S2CSetRevealingCommand extends AbstractS2CSetCommand<Float>
 
     public float getValue()
     {
-        return getArgumentAt(0, 0f);
+        return val;
     }
 }

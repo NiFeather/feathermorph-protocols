@@ -1,30 +1,37 @@
 package xyz.nifeather.morph.network.commands.S2C.set;
 
+import org.jetbrains.annotations.NotNull;
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
+import java.util.Map;
 
 public class S2CSetProfileCommand extends AbstractS2CSetCommand<String>
 {
-    public S2CSetProfileCommand(String nbtTag)
+    private final String nbtTag;
+
+    public S2CSetProfileCommand(@NotNull String nbtTag)
     {
-        super(nbtTag);
+        this.nbtTag = nbtTag;
     }
 
     public String getProfileSNbt()
     {
-        return getArgumentAt(0, "{}");
+        return nbtTag;
     }
 
-    public static S2CSetProfileCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetProfileCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetProfileCommand.class, 1);
+        return new S2CSetProfileCommand(Asserts.getStringOrThrow(arguments, "tag"));
+    }
 
-        return new S2CSetProfileCommand(arguments.getFirst());
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("tag", nbtTag);
     }
 
     @Override

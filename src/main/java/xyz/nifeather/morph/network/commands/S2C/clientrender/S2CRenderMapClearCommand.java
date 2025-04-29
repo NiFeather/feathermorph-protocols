@@ -5,6 +5,7 @@ import xyz.nifeather.morph.network.commands.S2C.AbstractS2CCommand;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CRenderMapClearCommand extends AbstractS2CCommand<String>
 {
@@ -14,7 +15,7 @@ public class S2CRenderMapClearCommand extends AbstractS2CCommand<String>
         return S2CCommandNames.CRClear;
     }
 
-    public static S2CRenderMapClearCommand fromArguments(List<String> arguments)
+    public static S2CRenderMapClearCommand fromArguments(Map<String, String> arguments)
     {
         return new S2CRenderMapClearCommand();
     }
@@ -23,5 +24,11 @@ public class S2CRenderMapClearCommand extends AbstractS2CCommand<String>
     public void onCommand(BasicServerHandler<?> handler)
     {
         handler.onClientMapClearCommand(this);
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of();
     }
 }

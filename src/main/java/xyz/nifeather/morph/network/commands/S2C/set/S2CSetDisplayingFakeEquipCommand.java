@@ -8,19 +8,26 @@ import xyz.nifeather.morph.network.commands.S2C.S2CRequestCommand;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CSetDisplayingFakeEquipCommand extends AbstractS2CSetCommand<Boolean>
 {
+    public final boolean displaying;
+
     public S2CSetDisplayingFakeEquipCommand(boolean val)
     {
-        super(val);
+        this.displaying = val;
     }
 
-    public static S2CSetDisplayingFakeEquipCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetDisplayingFakeEquipCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetDisplayingFakeEquipCommand.class, 1);
+        return new S2CSetDisplayingFakeEquipCommand(Boolean.parseBoolean(Asserts.getStringOrThrow(arguments, "val")));
+    }
 
-        return new S2CSetDisplayingFakeEquipCommand(Boolean.parseBoolean(arguments.getFirst()));
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("val", displaying + "");
     }
 
     @Override

@@ -5,24 +5,33 @@ import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
+import java.util.Map;
 
 public class C2SToggleSelfCommand extends AbstractC2SCommand<C2SToggleSelfCommand.SelfViewMode>
 {
+    private final SelfViewMode selfViewMode;
+
     public C2SToggleSelfCommand(SelfViewMode val)
     {
-        super(val);
+        this.selfViewMode = val;
     }
 
     public SelfViewMode getSelfViewMode()
     {
-        return getArgumentAt(0);
+        return selfViewMode;
     }
 
-    public static C2SToggleSelfCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static C2SToggleSelfCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, C2SToggleSelfCommand.class, 1);
-        return new C2SToggleSelfCommand(SelfViewMode.fromString(arguments.getFirst()));
+        return new C2SToggleSelfCommand(SelfViewMode.fromNetworkname(Asserts.getStringOrThrow(arguments, "mode")));
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of(
+                "mode", selfViewMode.networkName
+        );
     }
 
     @Override
@@ -66,7 +75,7 @@ public class C2SToggleSelfCommand extends AbstractC2SCommand<C2SToggleSelfComman
         {
             return value ? ON : OFF;
         }
-        public static SelfViewMode fromString(String str) throws RuntimeException
+        public static SelfViewMode fromNetworkname(String str) throws RuntimeException
         {
             if (str.equalsIgnoreCase("true")) return ON;
             else if (str.equalsIgnoreCase("false")) return OFF;

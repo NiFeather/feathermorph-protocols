@@ -14,16 +14,24 @@ import java.util.Map;
  */
 public class S2CSetRenderRevealCommand extends AbstractS2CCommand<String>
 {
+    private final Map<Integer, String> uuidPlayerMap;
+
     public S2CSetRenderRevealCommand(Map<Integer, String> uuidToPlayerMap)
     {
-        super(gson().toJson(uuidToPlayerMap));
+        this.uuidPlayerMap = uuidToPlayerMap;
     }
 
-    public static S2CSetRenderRevealCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetRenderRevealCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetRenderRevealCommand.class, 1);
+        return new S2CSetRenderRevealCommand(MapCommandHelper.parseMapIntegerString(Asserts.getStringOrThrow(arguments, "value")));
+    }
 
-        return new S2CSetRenderRevealCommand(MapCommandHelper.parseMapIntegerString(arguments.getFirst()));
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of(
+                "value", gson().toJson(uuidPlayerMap)
+        );
     }
 
     @Override
@@ -40,7 +48,7 @@ public class S2CSetRenderRevealCommand extends AbstractS2CCommand<String>
 
     public Map<Integer, String> getMap()
     {
-        return MapCommandHelper.parseMapIntegerString(this);
+        return uuidPlayerMap;
     }
 
     public static S2CSetRenderRevealCommand of(Map<Integer, String> idToPlayerMap)

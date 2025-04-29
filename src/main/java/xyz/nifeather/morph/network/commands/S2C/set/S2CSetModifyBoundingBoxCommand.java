@@ -7,24 +7,31 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CSetModifyBoundingBoxCommand extends AbstractS2CSetCommand<Boolean>
 {
+    private final boolean doModify;
+
     public S2CSetModifyBoundingBoxCommand(boolean val)
     {
-        super(val);
+        this.doModify = val;
     }
 
     public boolean getModifyBoundingBox()
     {
-        return getArgumentAt(0, false);
+        return doModify;
     }
 
-    public static S2CSetModifyBoundingBoxCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetModifyBoundingBoxCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CSetModifyBoundingBoxCommand.class, 1);
+        return new S2CSetModifyBoundingBoxCommand(Boolean.parseBoolean(Asserts.getStringOrThrow(arguments, "val")));
+    }
 
-        return new S2CSetModifyBoundingBoxCommand(Boolean.parseBoolean(arguments.getFirst()));
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("val", doModify + "");
     }
 
     @Override

@@ -7,30 +7,36 @@ import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class S2CRequestCommand extends AbstractS2CCommand<String>
 {
-    public static S2CRequestCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CRequestCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CRequestCommand.class, 2);
-
-        var typeStr = arguments.getFirst();
+        var typeStr = Asserts.getStringOrThrow(arguments, "type");
 
         var type = Arrays.stream(Type.values()).filter(t -> t.commandName.equalsIgnoreCase(typeStr))
                 .findFirst().orElse(Type.Unknown);
 
-        var source = arguments.get(1);
+        var source = Asserts.getStringOrThrow(arguments, "source");
 
         return new S2CRequestCommand(type, source);
     }
 
-    private S2CRequestCommand()
+    @Override
+    public Map<String, String> generateArgumentMap()
     {
+        return Map.of("type", requestType.commandName,
+                "source", source);
     }
+
+    private final Type requestType;
+    private final String source;
 
     public S2CRequestCommand(Type requestType, String source)
     {
-        super(new String[]{requestType.commandName, source});
+        this.requestType = requestType;
+        this.source = source;
     }
 
     @Override
@@ -49,8 +55,6 @@ public class S2CRequestCommand extends AbstractS2CCommand<String>
     @Override
     public void onCommand(BasicServerHandler<?> handler)
     {
-        var typeStr = getArgumentAt(0, "?");
-
         handler.onExchangeRequestReceive(this);
     }
 

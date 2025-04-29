@@ -10,25 +10,33 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CQueryCommand extends AbstractS2CCommand<String>
 {
-    public static S2CQueryCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CQueryCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CQueryCommand.class, 2);
-
-        var type = QueryType.tryValueOf(arguments.remove(0));
-        return new S2CQueryCommand(type, arguments);
+        var type = QueryType.tryValueOf(Asserts.getStringOrThrow(arguments, "type"));
+        return new S2CQueryCommand(type, Asserts.getStringListOrThrow(arguments, "diff"));
     }
 
-    public S2CQueryCommand(QueryType queryType, List<String> diff)
+    @Override
+    public Map<String, String> generateArgumentMap()
     {
-        super(diff);
-
-        this.queryType = queryType;
+        return Map.of(
+                "type", this.queryType.name(),
+                "diff", gson().toJson(this.diff)
+        );
     }
 
     private final QueryType queryType;
+    private final List<String> diff;
+
+    public S2CQueryCommand(QueryType queryType, List<String> diff)
+    {
+        this.diff = diff;
+        this.queryType = queryType;
+    }
 
     public QueryType queryType()
     {
@@ -37,24 +45,13 @@ public class S2CQueryCommand extends AbstractS2CCommand<String>
 
     public List<String> getDiff()
     {
-        return arguments;
+        return diff;
     }
 
     @Override
     public String getBaseName()
     {
         return S2CCommandNames.Query;
-    }
-
-    @Override
-    public List<String> serializeArgumentList()
-    {
-        var list = new ObjectArrayList<String>();
-
-        list.add(queryType.name().toLowerCase());
-        list.addAll(super.serializeArgumentList());
-
-        return list;
     }
 
     @Environment(EnvironmentType.CLIENT)

@@ -32,7 +32,7 @@ public class S2CRenderMeta
     @Expose
     public boolean showOverridedEquipment;
 
-    private static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().disableHtmlEscaping().create();
+    private static final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
 
     @Override
     public String toString()

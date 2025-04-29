@@ -6,19 +6,34 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CRenderMapAddCommand extends AbstractS2CCommand<String>
 {
+    private int networkId;
+    private String mobId;
+
     public S2CRenderMapAddCommand(Integer playerNetworkId, String mobId)
     {
-        super(new String[]{ playerNetworkId.toString(), mobId });
+        this.networkId = playerNetworkId;
+        this.mobId = mobId;
     }
 
-    public static S2CRenderMapAddCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CRenderMapAddCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CRenderMapAddCommand.class, 2);
+        return new S2CRenderMapAddCommand(
+                Integer.parseInt(Asserts.getStringOrThrow(arguments, "player_id")),
+                Asserts.getStringOrThrow(arguments, "mob_id")
+        );
+    }
 
-        return new S2CRenderMapAddCommand(Integer.parseInt(arguments.getFirst()), arguments.get(1));
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of(
+                "player_id", Integer.toString(networkId),
+                "mob_id", mobId
+        );
     }
 
     @Override
@@ -35,21 +50,21 @@ public class S2CRenderMapAddCommand extends AbstractS2CCommand<String>
 
     public boolean isValid()
     {
-        return getArgumentAt(0) != null && getArgumentAt(1) != null;
+        return !mobId.isBlank();
     }
 
     public int getPlayerNetworkId()
     {
         if (!isValid()) throw new IllegalArgumentException("Trying to get a network id from an invalid packet.");
 
-        return Integer.parseInt(getArgumentAt(0, "-1"));
+        return networkId;
     }
 
     public String getMobId()
     {
         if (!isValid()) throw new IllegalArgumentException("Trying to get mob id from an invalid packet.");
 
-        return getArgumentAt(1, "morph:unknown");
+        return mobId;
     }
 
     private static final S2CRenderMapAddCommand invalidPacket = new S2CRenderMapAddCommand(-1, null);

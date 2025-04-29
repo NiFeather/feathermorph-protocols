@@ -4,22 +4,23 @@ import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
+import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CSetAggressiveCommand extends AbstractS2CSetCommand<Boolean>
 {
+    public final boolean val;
+
     public S2CSetAggressiveCommand(boolean val)
     {
-        super(val);
+        this.val = val;
     }
 
-    public static S2CSetAggressiveCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CSetAggressiveCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        if (arguments.isEmpty())
-            throw new RuntimeException("At least one argument is required for S2CSetAggressiveCommand, but got empty");
-
-        return new S2CSetAggressiveCommand(Boolean.parseBoolean(arguments.getFirst()));
+        return new S2CSetAggressiveCommand(Boolean.parseBoolean(Asserts.getStringOrThrow(arguments, "val")));
     }
 
     @Override
@@ -33,5 +34,11 @@ public class S2CSetAggressiveCommand extends AbstractS2CSetCommand<Boolean>
     public void onCommand(BasicServerHandler<?> handler)
     {
         handler.onSetAggressiveCommand(this);
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of("val", val + "");
     }
 }

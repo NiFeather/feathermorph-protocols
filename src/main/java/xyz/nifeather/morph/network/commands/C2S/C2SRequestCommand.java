@@ -8,25 +8,34 @@ import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class C2SRequestCommand extends AbstractC2SCommand<String>
 {
     public C2SRequestCommand(Decision decision, String targetRequestName)
     {
-        super(new String[]{decision.name().toLowerCase(), targetRequestName});
+        this.decision = decision;
+        this.targetRequestName = targetRequestName;
     }
 
-    public static C2SRequestCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static C2SRequestCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, C2SRequestCommand.class, 2);
-
-        var decisionName = arguments.getFirst();
-        var targetPlayerName = arguments.get(1);
+        var decisionName = Asserts.getStringOrThrow(arguments, "decision");
+        var targetPlayerName = Asserts.getStringOrThrow(arguments, "request");
 
         var decision = Arrays.stream(Decision.values()).filter(v -> v.name().equalsIgnoreCase(decisionName))
                 .findFirst().orElseThrow(() -> new RuntimeException("No matched Decision for input '%s'".formatted(decisionName)));
 
         return new C2SRequestCommand(decision, targetPlayerName);
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of(
+                "decision", decision.name(),
+                "request", targetRequestName
+        );
     }
 
     @Override

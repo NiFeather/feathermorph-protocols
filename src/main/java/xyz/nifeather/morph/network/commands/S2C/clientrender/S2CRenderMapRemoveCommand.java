@@ -6,19 +6,28 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
+import java.util.Map;
 
 public class S2CRenderMapRemoveCommand extends AbstractS2CCommand<Integer>
 {
+    private final int playerNetworkId;
+
     public S2CRenderMapRemoveCommand(Integer playerNetworkId)
     {
-        super(playerNetworkId);
+        this.playerNetworkId = playerNetworkId;
     }
 
-    public static S2CRenderMapRemoveCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static S2CRenderMapRemoveCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, S2CRenderMapRemoveCommand.class, 1);
+        return new S2CRenderMapRemoveCommand(Integer.parseInt(Asserts.getStringOrThrow(arguments, "id")));
+    }
 
-        return new S2CRenderMapRemoveCommand(Integer.parseInt(arguments.getFirst()));
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of(
+                "id", Integer.toString(playerNetworkId)
+        );
     }
 
     @Override
@@ -35,14 +44,14 @@ public class S2CRenderMapRemoveCommand extends AbstractS2CCommand<Integer>
 
     public boolean isValid()
     {
-        return getArgumentAt(0, -1) != -1;
+        return playerNetworkId != -1;
     }
 
     public int getPlayerNetworkId()
     {
         if (!isValid()) throw new IllegalArgumentException("Trying to get a network id from an invalid packet.");
 
-        return getArgumentAt(0, -1);
+        return playerNetworkId;
     }
 
     private static final S2CRenderMapRemoveCommand invalidPacket = new S2CRenderMapRemoveCommand(-1);

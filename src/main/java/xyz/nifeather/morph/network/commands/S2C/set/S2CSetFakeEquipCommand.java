@@ -7,11 +7,13 @@ import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 
 public abstract class S2CSetFakeEquipCommand<TItemStack> extends AbstractS2CSetCommand<TItemStack>
 {
-    public S2CSetFakeEquipCommand(TItemStack item, ProtocolEquipmentSlot slot)
+    protected S2CSetFakeEquipCommand(TItemStack item, ProtocolEquipmentSlot slot)
     {
-        super(item);
         this.slot = slot;
+        this.item = item;
     }
+
+    private final TItemStack item;
 
     private final ProtocolEquipmentSlot slot;
 
@@ -22,7 +24,7 @@ public abstract class S2CSetFakeEquipCommand<TItemStack> extends AbstractS2CSetC
 
     public TItemStack getItemStack()
     {
-        return getArgumentAt(0);
+        return item;
     }
 
     @Override

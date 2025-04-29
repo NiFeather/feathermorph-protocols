@@ -3,19 +3,28 @@ package xyz.nifeather.morph.network.commands.C2S;
 import xyz.nifeather.morph.network.BasicClientHandler;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
+import java.util.Map;
 
 public class C2SAnimationCommand extends AbstractC2SCommand<String>
 {
+    private final String animId;
+
     public C2SAnimationCommand(String animationId)
     {
-        super(animationId);
+        this.animId = animationId;
     }
 
-    public static C2SAnimationCommand fromArguments(List<String> arguments) throws RuntimeException
+    public static C2SAnimationCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        Asserts.assertArgumentCountAtLeast(arguments, C2SAnimationCommand.class, 1);
-        return new C2SAnimationCommand(arguments.getFirst());
+        return new C2SAnimationCommand(Asserts.getStringOrThrow(arguments, "anim"));
+    }
+
+    @Override
+    public Map<String, String> generateArgumentMap()
+    {
+        return Map.of(
+                "anim", animId
+        );
     }
 
     @Override
@@ -28,7 +37,7 @@ public class C2SAnimationCommand extends AbstractC2SCommand<String>
 
     public String getAnimationId()
     {
-        return getArgumentAt(0, UNKNOWN_ANIMATION_ID);
+        return animId;
     }
 
     @Override

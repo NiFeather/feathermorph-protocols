@@ -46,11 +46,7 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetSelfViewingCommand(S2CSetSelfViewingCommand command);
     void onSetModifyBoundingBox(S2CSetModifyBoundingBoxCommand command);
 
-    @SuppressWarnings("removal")
-    @Deprecated(forRemoval = true)
-    void onSetReach(S2CSetReachCommand command);
-
-    void onSetRevealing(S2CSetRevealingCommand command);
+    void onSetRevealing(S2CSetMobRevealingCommand command);
 
     void onExchangeRequestReceive(S2CRequestCommand command);
 
