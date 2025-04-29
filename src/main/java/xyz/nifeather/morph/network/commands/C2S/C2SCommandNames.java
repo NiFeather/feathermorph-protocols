@@ -13,7 +13,7 @@ public class C2SCommandNames
     public static final String Option = SetSingleOption;
 
     public static final String Skill = "skill";
-    public static final String ToggleSelf = "toggleself";
+    public static final String ToggleSelf = "c2s_toggleself";
     public static final String Unmorph = "unmorph";
 
     public static final String Request = S2CCommandNames.Request;

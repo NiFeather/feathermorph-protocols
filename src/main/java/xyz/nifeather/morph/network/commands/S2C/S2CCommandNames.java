@@ -25,7 +25,7 @@ public class S2CCommandNames
     public static final String SetSkillCooldown = "cd";
     public static final String SetSNbt = "nbt";
     public static final String SetSneaking = "sneaking";
-    public static final String SetSelfViewing = "toggleself";
+    public static final String SetSelfViewing = "s2c_set_toggleself";
     public static final String SetModifyBoundingBox = "boundingbox";
 
     public static final String SetRevealing = "reveal";
