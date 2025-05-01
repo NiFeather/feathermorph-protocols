@@ -30,7 +30,7 @@ public class C2SAnimationCommand extends AbstractC2SCommand<String>
     @Override
     public String getBaseName()
     {
-        return "animation";
+        return C2SCommandNames.PlayAnimation;
     }
 
     public static final String UNKNOWN_ANIMATION_ID = "morph:unknown";
