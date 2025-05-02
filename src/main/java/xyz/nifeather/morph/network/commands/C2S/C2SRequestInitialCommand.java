@@ -4,7 +4,6 @@ import xyz.nifeather.morph.network.BasicClientHandler;
 import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 
-import java.util.List;
 import java.util.Map;
 
 public class C2SRequestInitialCommand extends AbstractC2SCommand<String>
@@ -23,7 +22,7 @@ public class C2SRequestInitialCommand extends AbstractC2SCommand<String>
     @Override
     public String getBaseName()
     {
-        return C2SCommandNames.Initial;
+        return C2SCommandNames.RequestInitial;
     }
 
     @Environment(EnvironmentType.SERVER)

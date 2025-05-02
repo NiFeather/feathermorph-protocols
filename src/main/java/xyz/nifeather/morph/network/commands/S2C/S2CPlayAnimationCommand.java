@@ -5,7 +5,7 @@ import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Map;
 
-public class S2CAnimationCommand extends AbstractS2CCommand<String>
+public class S2CPlayAnimationCommand extends AbstractS2CCommand<String>
 {
     @Override
     public Map<String, String> generateArgumentMap()
@@ -15,20 +15,20 @@ public class S2CAnimationCommand extends AbstractS2CCommand<String>
 
     private final String animationIdentifier;
 
-    public S2CAnimationCommand(String animationIdentifier)
+    public S2CPlayAnimationCommand(String animationIdentifier)
     {
         this.animationIdentifier = animationIdentifier;
     }
 
-    public static S2CAnimationCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static S2CPlayAnimationCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        return new S2CAnimationCommand(Asserts.getStringOrThrow(arguments, "anim_identifier"));
+        return new S2CPlayAnimationCommand(Asserts.getStringOrThrow(arguments, "anim_identifier"));
     }
 
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.Animation;
+        return S2CCommandNames.PlayAnimation;
     }
 
     public String getAnimId()

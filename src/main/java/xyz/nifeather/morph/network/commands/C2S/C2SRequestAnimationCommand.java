@@ -5,18 +5,18 @@ import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Map;
 
-public class C2SAnimationCommand extends AbstractC2SCommand<String>
+public class C2SRequestAnimationCommand extends AbstractC2SCommand<String>
 {
     private final String animId;
 
-    public C2SAnimationCommand(String animationId)
+    public C2SRequestAnimationCommand(String animationId)
     {
         this.animId = animationId;
     }
 
-    public static C2SAnimationCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static C2SRequestAnimationCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
-        return new C2SAnimationCommand(Asserts.getStringOrThrow(arguments, "anim"));
+        return new C2SRequestAnimationCommand(Asserts.getStringOrThrow(arguments, "anim"));
     }
 
     @Override
@@ -30,7 +30,7 @@ public class C2SAnimationCommand extends AbstractC2SCommand<String>
     @Override
     public String getBaseName()
     {
-        return C2SCommandNames.PlayAnimation;
+        return C2SCommandNames.RequestAnimation;
     }
 
     public static final String UNKNOWN_ANIMATION_ID = "morph:unknown";

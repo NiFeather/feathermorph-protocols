@@ -77,7 +77,7 @@ public interface BasicClientHandler<TPlatformPlayer>
     void onToggleSelfCommand(C2SToggleSelfCommand command);
     void onUnmorphCommand(C2SUnmorphCommand command);
     void onRequestCommand(C2SExchangeRequestManagementCommand command);
-    void onAnimationCommand(C2SAnimationCommand command);
+    void onAnimationCommand(C2SRequestAnimationCommand command);
 
     //endregion
 }

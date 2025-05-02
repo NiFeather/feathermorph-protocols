@@ -4,10 +4,8 @@ import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.annotations.Environment;
 import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
-import xyz.nifeather.morph.network.commands.S2C.S2CRequestCommand;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
 import java.util.Map;
 
 public class S2CSetDisplayingFakeEquipCommand extends AbstractS2CSetCommand<Boolean>

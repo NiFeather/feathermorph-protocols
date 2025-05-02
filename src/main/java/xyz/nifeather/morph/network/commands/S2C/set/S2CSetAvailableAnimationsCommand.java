@@ -2,6 +2,7 @@ package xyz.nifeather.morph.network.commands.S2C.set;
 
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import xyz.nifeather.morph.network.BasicServerHandler;
+import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class S2CSetAvailableAnimationsCommand extends AbstractS2CSetCommand<Stri
     @Override
     public String getBaseName()
     {
-        return "avail_anim";
+        return S2CCommandNames.SetAvailableAnimations;
     }
 
     public List<String> getAvailableAnimations()

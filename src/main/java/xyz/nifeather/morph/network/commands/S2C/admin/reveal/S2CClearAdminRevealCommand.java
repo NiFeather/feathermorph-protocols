@@ -11,7 +11,7 @@ public class S2CClearAdminRevealCommand extends AbstractS2CCommand<String>
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.ClearReveal;
+        return S2CCommandNames.AdminRevealClear;
     }
 
     public static S2CClearAdminRevealCommand fromArguments(Map<String, String> arguments)

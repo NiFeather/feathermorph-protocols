@@ -28,7 +28,7 @@ public interface BasicServerHandler<TPlatformPlayer>
 
     //region Commands
 
-    void onCurrentCommand(S2CCurrentCommand command);
+    void onCurrentCommand(S2CSetCurrentCommand command);
     void onReAuthCommand(S2CReAuthCommand command);
     void onUnAuthCommand(S2CUnAuthCommand command);
     void onSwapCommand(S2CSwapCommand command);
@@ -46,9 +46,9 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetSelfViewingCommand(S2CSetSelfViewingStatusCommand command);
     void onSetModifyBoundingBox(S2CSetModifyBoundingBoxCommand command);
 
-    void onSetRevealing(S2CSetMobRevealingCommand command);
+    void onSetRevealing(S2CSetMobRevealCommand command);
 
-    void onExchangeRequestReceive(S2CRequestCommand command);
+    void onExchangeRequestReceive(S2CUpdateRequestStatusCommand command);
 
     //region MapCommands
 
@@ -69,7 +69,7 @@ public interface BasicServerHandler<TPlatformPlayer>
 
     //endregion ClientRenderer
 
-    void onAnimationCommand(S2CAnimationCommand command);
+    void onAnimationCommand(S2CPlayAnimationCommand command);
     void onValidAnimationsCommand(S2CSetAvailableAnimationsCommand command);
     void onSetAnimationDisplayCommand(S2CSetAnimationDisplayNameCommand command);
 

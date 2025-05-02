@@ -3,10 +3,8 @@ package xyz.nifeather.morph.network.commands.S2C.set;
 import org.jetbrains.annotations.NotNull;
 import xyz.nifeather.morph.network.BasicServerHandler;
 import xyz.nifeather.morph.network.commands.S2C.S2CCommandNames;
-import xyz.nifeather.morph.network.commands.S2C.S2CRequestCommand;
 import xyz.nifeather.morph.network.utils.Asserts;
 
-import java.util.List;
 import java.util.Map;
 
 public class S2CSetAnimationDisplayNameCommand extends AbstractS2CSetCommand<String>

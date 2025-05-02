@@ -6,12 +6,11 @@ import xyz.nifeather.morph.network.annotations.EnvironmentType;
 import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
-public class S2CRequestCommand extends AbstractS2CCommand<String>
+public class S2CUpdateRequestStatusCommand extends AbstractS2CCommand<String>
 {
-    public static S2CRequestCommand fromArguments(Map<String, String> arguments) throws RuntimeException
+    public static S2CUpdateRequestStatusCommand fromArguments(Map<String, String> arguments) throws RuntimeException
     {
         var typeStr = Asserts.getStringOrThrow(arguments, "type");
 
@@ -20,7 +19,7 @@ public class S2CRequestCommand extends AbstractS2CCommand<String>
 
         var source = Asserts.getStringOrThrow(arguments, "source");
 
-        return new S2CRequestCommand(type, source);
+        return new S2CUpdateRequestStatusCommand(type, source);
     }
 
     @Override
@@ -33,7 +32,7 @@ public class S2CRequestCommand extends AbstractS2CCommand<String>
     private final Type requestType;
     private final String source;
 
-    public S2CRequestCommand(Type requestType, String source)
+    public S2CUpdateRequestStatusCommand(Type requestType, String source)
     {
         this.requestType = requestType;
         this.source = source;
@@ -42,7 +41,7 @@ public class S2CRequestCommand extends AbstractS2CCommand<String>
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.Request;
+        return S2CCommandNames.UpdateRequestStatus;
     }
 
     @Environment(EnvironmentType.CLIENT)

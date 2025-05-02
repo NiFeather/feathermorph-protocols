@@ -37,7 +37,7 @@ public class S2CSetProfileCommand extends AbstractS2CSetCommand<String>
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.SetProfile;
+        return S2CCommandNames.SetSkinProfile;
     }
 
     @Environment(EnvironmentType.CLIENT)

@@ -35,7 +35,7 @@ public class S2CAddAdminRevealCommand extends AbstractS2CCommand<String>
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.AddReveal;
+        return S2CCommandNames.AdminRevealAdd;
     }
 
     @Override

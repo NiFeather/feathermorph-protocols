@@ -32,7 +32,7 @@ public class S2CRemoveAdminRevealCommand extends AbstractS2CCommand<Integer>
     @Override
     public String getBaseName()
     {
-        return S2CCommandNames.RemoveReveal;
+        return S2CCommandNames.AdminRevealRemove;
     }
 
     public int getTargetId()
