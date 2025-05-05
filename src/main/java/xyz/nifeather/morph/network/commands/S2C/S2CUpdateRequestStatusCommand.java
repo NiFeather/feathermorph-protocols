@@ -29,8 +29,8 @@ public class S2CUpdateRequestStatusCommand extends AbstractS2CCommand<String>
                 "source", source);
     }
 
-    private final Type requestType;
-    private final String source;
+    public final Type requestType;
+    public final String source;
 
     public S2CUpdateRequestStatusCommand(Type requestType, String source)
     {
@@ -43,12 +43,6 @@ public class S2CUpdateRequestStatusCommand extends AbstractS2CCommand<String>
     {
         return S2CCommandNames.UpdateRequestStatus;
     }
-
-    @Environment(EnvironmentType.CLIENT)
-    public Type type;
-
-    @Environment(EnvironmentType.CLIENT)
-    public String sourcePlayer;
 
     @Environment(EnvironmentType.CLIENT)
     @Override
