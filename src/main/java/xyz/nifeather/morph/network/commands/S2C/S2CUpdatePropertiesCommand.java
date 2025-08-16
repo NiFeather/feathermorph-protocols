@@ -11,6 +11,11 @@ public class S2CUpdatePropertiesCommand extends AbstractS2CCommand<String>
 {
     private final Map<String, String> properties = new ConcurrentHashMap<>();
 
+    public Map<String, String> getProperties()
+    {
+        return properties;
+    }
+
     public S2CUpdatePropertiesCommand(Map<String, String> properties)
     {
         this.properties.putAll(properties);
