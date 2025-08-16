@@ -7,6 +7,8 @@ public class S2CCommandNames
     public static final String UnAuth = "unauth";
     public static final String SwapHands = "action_swap_hand";
     public static final String Query = "query";
+    public static final String UpdateProperties = "update_properties";
+    public static final String SyncPropertyRegistry = "sync_property_registry";
 
     public static final String UpdateRequestStatus = "update_request_status";
 

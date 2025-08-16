@@ -40,7 +40,6 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetDisplayingFakeEquipCommand(S2CSetDisplayingFakeEquipCommand command);
     void onSetSNbtCommand(S2CSetSNbtCommand command); //NBT和SNBT用的是同一个指令名和格式，不需要单独设置
     void onSetProfileCommand(S2CSetProfileCommand command);
-    void onSetSelfViewIdentifierCommand(S2CSetSelfViewIdentifierCommand command);
     void onSetSkillCooldownCommand(S2CSetSkillCooldownCommand command);
     void onSetSneakingCommand(S2CSetSneakingCommand command);
     void onSetSelfViewingCommand(S2CSetSelfViewingStatusCommand command);
@@ -72,6 +71,8 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onAnimationCommand(S2CPlayAnimationCommand command);
     void onValidAnimationsCommand(S2CSetAvailableAnimationsCommand command);
     void onSetAnimationDisplayCommand(S2CSetAnimationDisplayNameCommand command);
+
+    void onUpdatePropertiesCommand(S2CUpdatePropertiesCommand command);
 
     //endregion Commands
 }

@@ -2,7 +2,7 @@ package xyz.nifeather.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.WE_NOW_USE_JSON.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.NETWORK_DISGUISE_PROPERTIES.protocolVersion;
 
     private static Boolean IsServer = null;
 
@@ -97,7 +97,12 @@ public class Constants
         /**
          * We now use Gson to send commands!
          */
-        WE_NOW_USE_JSON(14)
+        WE_NOW_USE_JSON(14),
+
+        /**
+         * The usage of NBT is now deprecated, means that servers using API 15 will NOT compatible with clients implementing older APIs.
+         */
+        NETWORK_DISGUISE_PROPERTIES(15)
         ;
 
         public final int protocolVersion;
