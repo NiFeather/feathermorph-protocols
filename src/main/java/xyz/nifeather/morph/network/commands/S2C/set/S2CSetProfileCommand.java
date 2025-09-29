@@ -9,6 +9,7 @@ import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Map;
 
+@Deprecated(forRemoval = true)
 public class S2CSetProfileCommand extends AbstractS2CSetCommand<String>
 {
     private final String nbtTag;

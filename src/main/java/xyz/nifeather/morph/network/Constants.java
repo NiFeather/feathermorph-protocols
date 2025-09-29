@@ -2,32 +2,7 @@ package xyz.nifeather.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.NETWORK_DISGUISE_PROPERTIES.protocolVersion;
-
-    private static Boolean IsServer = null;
-
-    public static boolean isServer()
-    {
-        return IsServer != null && IsServer;
-    }
-
-    public static void initialize(boolean isServer)
-    {
-        if (IsServer != null)
-            throw new RuntimeException("Already initialized once!");
-
-        IsServer = isServer;
-    }
-
-    public static void unInitialize()
-    {
-        IsServer = null;
-    }
-
-    public static void dispose()
-    {
-        IsServer = null;
-    }
+    public static final int PROTOCOL_VERSION = ApiLevel.EQUIPMENT_AND_SKIN_ARE_NOW_PROPERTY.protocolVersion;
 
     public enum ApiLevel
     {
@@ -102,7 +77,12 @@ public class Constants
         /**
          * The usage of NBT is now deprecated, means that servers using API 15 will NOT compatible with clients implementing older APIs.
          */
-        NETWORK_DISGUISE_PROPERTIES(15)
+        NETWORK_DISGUISE_PROPERTIES(15),
+
+        /**
+         * Removed equipment and skin commands as they are now using disguise property
+         */
+        EQUIPMENT_AND_SKIN_ARE_NOW_PROPERTY(16)
         ;
 
         public final int protocolVersion;

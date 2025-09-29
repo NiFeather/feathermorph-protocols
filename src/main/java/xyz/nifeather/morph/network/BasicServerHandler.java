@@ -36,10 +36,24 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onQueryCommand(S2CQueryCommand command);
 
     void onSetAggressiveCommand(S2CSetAggressiveCommand command);
-    void onSetFakeEquipCommand(S2CSetFakeEquipCommand<?> command);
-    void onSetDisplayingFakeEquipCommand(S2CSetDisplayingFakeEquipCommand command);
+
+    @SuppressWarnings("removal")
+    default void onSetFakeEquipCommand(S2CSetFakeEquipCommand<?> command)
+    {
+    }
+
+    @SuppressWarnings("removal")
+    default void onSetDisplayingFakeEquipCommand(S2CSetDisplayingFakeEquipCommand command)
+    {
+    }
+
     void onSetSNbtCommand(S2CSetSNbtCommand command); //NBT和SNBT用的是同一个指令名和格式，不需要单独设置
-    void onSetProfileCommand(S2CSetProfileCommand command);
+
+    @SuppressWarnings("removal")
+    default void onSetProfileCommand(S2CSetProfileCommand command)
+    {
+    }
+
     void onSetSkillCooldownCommand(S2CSetSkillCooldownCommand command);
     void onSetSneakingCommand(S2CSetSneakingCommand command);
     void onSetSelfViewingCommand(S2CSetSelfViewingStatusCommand command);

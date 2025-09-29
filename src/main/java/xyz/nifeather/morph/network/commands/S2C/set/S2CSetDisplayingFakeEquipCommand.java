@@ -8,6 +8,7 @@ import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Map;
 
+@Deprecated(forRemoval = true)
 public class S2CSetDisplayingFakeEquipCommand extends AbstractS2CSetCommand<Boolean>
 {
     public final boolean displaying;
