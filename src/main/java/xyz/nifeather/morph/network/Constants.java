@@ -2,7 +2,7 @@ package xyz.nifeather.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.EQUIPMENT_AND_SKIN_ARE_NOW_PROPERTY.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.PROPERTY_INPUT_IN_MORPH_COMMAND.protocolVersion;
 
     public enum ApiLevel
     {
@@ -82,7 +82,12 @@ public class Constants
         /**
          * Removed equipment and skin commands as they are now using disguise property
          */
-        EQUIPMENT_AND_SKIN_ARE_NOW_PROPERTY(16)
+        EQUIPMENT_AND_SKIN_ARE_NOW_PROPERTY(16),
+
+        /**
+         * Property inputs are now allowed in morph c2s command
+         */
+        PROPERTY_INPUT_IN_MORPH_COMMAND(17)
         ;
 
         public final int protocolVersion;
