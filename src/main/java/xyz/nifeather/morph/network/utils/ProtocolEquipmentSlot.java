@@ -8,7 +8,10 @@ public enum ProtocolEquipmentSlot
     HELMET,
     CHESTPLATE,
     LEGGINGS,
-    BOOTS;
+    BOOTS,
+
+    BODY,
+    SADDLE;
 
     @Override
     public String toString()
