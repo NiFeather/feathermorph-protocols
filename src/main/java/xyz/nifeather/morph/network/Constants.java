@@ -2,7 +2,7 @@ package xyz.nifeather.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.PROPERTY_INPUT_IN_MORPH_COMMAND.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.SADDLE_AND_BODY_EQUIPMENT_SLOT.protocolVersion;
 
     public enum ApiLevel
     {
@@ -87,7 +87,12 @@ public class Constants
         /**
          * Property inputs are now allowed in morph c2s command
          */
-        PROPERTY_INPUT_IN_MORPH_COMMAND(17)
+        PROPERTY_INPUT_IN_MORPH_COMMAND(17),
+
+        /**
+         * Saddle and Body slot has been added to {@link ProtocolEquipmentSlot}
+         */
+        SADDLE_AND_BODY_EQUIPMENT_SLOT(18)
         ;
 
         public final int protocolVersion;
