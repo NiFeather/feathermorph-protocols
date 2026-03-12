@@ -2,7 +2,7 @@ package xyz.nifeather.morph.network;
 
 public class Constants
 {
-    public static final int PROTOCOL_VERSION = ApiLevel.SADDLE_AND_BODY_EQUIPMENT_SLOT.protocolVersion;
+    public static final int PROTOCOL_VERSION = ApiLevel.ANIMATION_DEPRECATION_AND_DISCARD_PROPERTIES_AND_TEMP_PROPERTIES.protocolVersion;
 
     public enum ApiLevel
     {
@@ -90,9 +90,18 @@ public class Constants
         PROPERTY_INPUT_IN_MORPH_COMMAND(17),
 
         /**
-         * Saddle and Body slot has been added to {@link ProtocolEquipmentSlot}
+         * Saddle and Body slot has been added to {@link xyz.nifeather.morph.network.utils.ProtocolEquipmentSlot}
          */
-        SADDLE_AND_BODY_EQUIPMENT_SLOT(18)
+        SADDLE_AND_BODY_EQUIPMENT_SLOT(18),
+
+        /**
+         * {@link xyz.nifeather.morph.network.commands.S2C.S2CPlayAnimationCommand} has been deprecated, since the plugin now executes actions(animations) using Disguise Property.
+         * <br>
+         * {@link xyz.nifeather.morph.network.commands.S2C.S2CDiscardPropertiesCommand} has been introduced so that server can notify clients to drop certain properties.
+         * <br>
+         * {@link xyz.nifeather.morph.network.commands.S2C.S2CUpdateTemporaryPropertiesCommand} has been introduced, properties updated via this command should not be saved when saving the disguise.
+         */
+        ANIMATION_DEPRECATION_AND_DISCARD_PROPERTIES_AND_TEMP_PROPERTIES(19)
         ;
 
         public final int protocolVersion;

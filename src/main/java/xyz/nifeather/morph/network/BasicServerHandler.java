@@ -87,6 +87,9 @@ public interface BasicServerHandler<TPlatformPlayer>
     void onSetAnimationDisplayCommand(S2CSetAnimationDisplayNameCommand command);
 
     void onUpdatePropertiesCommand(S2CUpdatePropertiesCommand command);
+    void onUpdateTemporaryPropertiesCommand(S2CUpdateTemporaryPropertiesCommand command);
 
+    void onDiscardPropertiesCommand(S2CDiscardPropertiesCommand command);
+    void onDiscardTemporaryPropertiesCommand(S2CDiscardTemporaryPropertiesCommand command);
     //endregion Commands
 }

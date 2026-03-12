@@ -4,7 +4,7 @@ plugins {
 }
 
 group = "com.github.NiFeather"
-version = "2.5.0"
+version = "2.9.0"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {

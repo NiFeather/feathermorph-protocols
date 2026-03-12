@@ -5,6 +5,7 @@ import xyz.nifeather.morph.network.utils.Asserts;
 
 import java.util.Map;
 
+@Deprecated
 public class S2CPlayAnimationCommand extends AbstractS2CCommand<String>
 {
     @Override
